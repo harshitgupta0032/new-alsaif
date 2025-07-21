@@ -1,0 +1,99 @@
+'use client';
+import { FaTruck, FaShippingFast, FaWarehouse, FaCheckCircle } from 'react-icons/fa';
+import Button from '../common/Button';
+import { useScrollNavigation } from '@/hooks/UseScrollNavigaion';
+
+const services = [
+  {
+    title: 'Truck Rentals',
+    description:
+      'Rent modern, heavy-duty trucks for logistics, manufacturing, or material transport, customized to your business needs. ',
+    icon: <FaTruck className="text-xl lg:text-2xl text-white" />,
+    bgColor: 'bg-blue-100',
+    iconBg: 'bg-blue-500',
+    points: ['Diverse truck models for all cargo types. ', 'Flexible rental terms (short or long-term). ', '24/7 support for uninterrupted operations.'],
+  },
+  {
+    title: 'Trailer Rentals',
+    description:
+      'High-capacity trailers for long-haul and specialized transport, ensuring safe and timely delivery. ',
+    icon: <FaShippingFast className="text-xl lg:text-2xl text-white" />,
+    bgColor: 'bg-green-100',
+    iconBg: 'bg-green-600',
+    points: ['Flatbeds, refrigerated, and specialized trailers. ', 'Scalable solutions for large-scale operations. ', 'Regular maintenance for maximum reliability.'],
+  },
+  {
+    title: 'Tipper Rentals',
+    description:
+      'Robust tippers for construction, mining, and bulk material transport, designed for heavy-duty performance.',
+    icon: <FaWarehouse className="text-xl lg:text-2xl text-white" />,
+    bgColor: 'bg-purple-100',
+    iconBg: 'bg-purple-600',
+    points: ['High-capacity tippers for aggregates and materials. ', 'Fully maintained for project efficiency. ', 'Expert support for seamless operations.'],
+  },
+];
+
+const Services = () => {
+
+  const ScrollNavigation = useScrollNavigation();
+
+  return (
+    <section
+      id="services"
+      className="pt-10 flex justify-center items-center px-4 sm:px-6  min-h-screen md:px-8 lg:px-12 bg-white text-center"
+    >
+      <div className='text-center'>
+        <h2 className="text-black text-2xl  sm:text-3xl md:text-4xl lg:text-[36px] 2xl:text-[40px] font-bold mb-4">
+          <span className="font-bold text-blue-500">Tailored Transportation Solutions for Every Industry</span>
+        </h2>
+        <p className="text-gray-600 pb-3 max-w-2xl mx-auto text-sm sm:text-base md:text-lg lg:text-xl mb-10">
+          From logistics to construction, our fleet delivers efficiency and reliability.
+        </p>
+
+        <div className=" flex justify-center items-start flex-wrap sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          {services.map((service) => (
+            <div
+              key={service.title}
+              className={`group rounded-2xl shadow-sm p-5 sm:p-6 text-left flex flex-col gap-3 h-auto min-h-[300px] sm:h-[370px] md:h-[550px] w-[400px] mx-auto sm:w-[300px] md:w-auto transition hover:shadow-2xl ${service.bgColor} relative`}
+            >
+              <div className="flex items-center justify-start gap-2 mb-1 ">
+                <div
+                  className={`w-10 h-10 sm:size-9 lg:size-11 flex items-center justify-center rounded-full  ${service.iconBg} transition-transform duration-300 group-hover:scale-110`}
+                >
+                  {service.icon}
+                </div>
+                <h3 className="text-base sm:text-lg lg:text-2xl 2xl:text-3xl font-semibold text-neutral-800 ">
+                  {service.title}
+                </h3>
+              </div>
+              <div className="ps-3 mt-2">
+                <p className="text-xs -tracking-tighter sm:text-sm lg:text-base 2xl:text-lg text-black/50 mb-4 2xl:mb-6">
+                  {service.description}
+                </p>
+                <ul className="space-y-1">
+                  {service.points.map((point) => (
+                    <li
+                      key={point}
+                      className="flex items-start text-xs sm:text-sm lg:text-[15px] 2xl:text-lg text-black/40 -tracking-tight"
+                    >
+                      <FaCheckCircle className="text-green-500 w-4 h-5 mr-2 flex-shrink-0" />
+                      {point}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <Button
+                onClick={() => ScrollNavigation({ name: 'quotes', href: `#get-quotes` })}
+                className='rounded-xl mt-4  w-fit h-fit  2xl:text-lg'
+              >
+                Get Quotes Now
+              </Button>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Services;
