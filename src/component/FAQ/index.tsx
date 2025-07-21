@@ -33,7 +33,7 @@ const FAQ = () => {
   };
 
   return (
-    <section className="lg:min-h-screen py-5 md:p-13 px-4 md:px-0 bg-gray-50 flex flex-col items-center">
+    <section className="min-h-screen py-5 md:p-13 px-4 md:px-0 bg-gray-50 flex flex-col justify-center items-center">
       <h2 className=" text-black text-2xl  sm:text-3xl md:text-4xl lg:text-[36px] 2xl:text-[40px] font-bold text-center mb-3">
         Frequently Asked <span className="text-blue-500">Questions</span>
       </h2>
@@ -41,7 +41,7 @@ const FAQ = () => {
         Get answers to common questions about our transportation services.
       </p>
       
-      <div className="w-full max-w-3xl 2xl:max-w-5xl space-y-5 2xl:space-y-8 ">
+      <div className="w-full max-w-3xl 2xl:max-w-7xl space-y-5 2xl:space-y-8 ">
         {faqs.map((faq, idx) => (
           <div
             key={faq.question}

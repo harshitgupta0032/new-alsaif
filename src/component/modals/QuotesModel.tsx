@@ -19,7 +19,6 @@ import { contactInitialValues, contactValidationSchema, QuotesModelProps } from 
 const QuotesModel = ({ isOpen, onRequestClose }: QuotesModelProps) => {
 
   const handleAfterOpen = () => {
-    // Use a timeout to ensure the DOM is fully painted before drawing on the canvas
     setTimeout(() => {
       loadCaptchaEnginge(6);
     }, 0);
@@ -59,13 +58,12 @@ const QuotesModel = ({ isOpen, onRequestClose }: QuotesModelProps) => {
                 return;
               }
 
-              // Form is valid
               console.log('Contact form submitted:', values);
               toast.success('Form submitted successfully!');
               actions.resetForm();
               loadCaptchaEnginge(6);
               actions.setSubmitting(false);
-              onRequestClose(); // Optionally close modal on success
+              onRequestClose(); 
             }}
           >
             {({ isSubmitting, setFieldValue, values, errors, touched }) => (

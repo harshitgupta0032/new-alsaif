@@ -50,7 +50,7 @@ const Services = () => {
         <h2 className="text-black text-2xl  sm:text-3xl md:text-4xl lg:text-[36px] 2xl:text-[40px] font-bold mb-4">
           <span className="font-bold text-blue-500">Tailored Transportation Solutions for Every Industry</span>
         </h2>
-        <p className="text-gray-600 pb-3 max-w-2xl mx-auto text-[10px] sm:text-[12px] md:text-[13px] lg:text-[15px] 2xl:text-[18px] mb-5">
+        <p className="text-gray-600 pb-3 max-w-2xl mx-auto text-[10px] sm:text-[12px] md:text-[13px] lg:text-[15px] 2xl:text-[18px] mb-5 pb-8">
           From logistics to construction, our fleet delivers efficiency and reliability.
         </p>
 
@@ -60,7 +60,7 @@ const Services = () => {
               key={service.title}
               className={`group rounded-2xl shadow-sm p-5 sm:p-6 text-left flex flex-col gap-3 h-auto min-h-[300px] sm:min-h-[390px] lg:min-h-[450px] 2xl:h-[550px]  mx-auto sm:w-[270px] md:w-auto transition hover:shadow-2xl ${service.bgColor} relative`}
             >
-              <div className="flex items-center justify-start gap-2 mb-1 ">
+              <div className="flex items-center justify-start gap-3 mb-1 ">
                 <div
                   className={`w-10 h-10 sm:size-9 lg:size-11 flex items-center justify-center rounded-full  ${service.iconBg} transition-transform duration-300 group-hover:scale-110`}
                 >
@@ -78,7 +78,7 @@ const Services = () => {
                   {service.points.map((point) => (
                     <li
                       key={point}
-                      className="flex items-start text-xs sm:text-sm lg:text-[15px] 2xl:text-lg text-black/40 -tracking-tight"
+                      className="flex items-center gap-2 text-xs sm:text-sm lg:text-[15px] 2xl:text-lg text-black/40 -tracking-tight"
                     >
                       <FaCheckCircle className="text-green-500 w-4 h-5 mr-2 flex-shrink-0" />
                       {point}
@@ -89,7 +89,7 @@ const Services = () => {
               <div className="mt-auto flex justify-center items-center">
                 <Button
                   onClick={() => setIsOpen(true)}
-                  className='rounded-xl mt-4  w-fit h-fit  2xl:text-lg'
+                  className='rounded-xl mt-4  w-full   2xl:text-lg'
                 >
                   Get Quotes Now
                 </Button>
