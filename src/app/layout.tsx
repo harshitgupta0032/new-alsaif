@@ -33,7 +33,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-neutral-50 min-h-screen flex flex-col`}
       >
         <Toaster position="top-center" />
-        <header className="sticky top-0 z-50">
+        <header className="sticky top-0 z-49">
           <Navbar />
         </header>
         <main className="flex-1 bg-white">

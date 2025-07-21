@@ -49,7 +49,8 @@ const QuotesModel = ({ isOpen, onRequestClose }: QuotesModelProps) => {
       onRequestClose={onRequestClose}
       onAfterOpen={handleAfterOpen}
       contentLabel="Quotes Model"
-      className="max-w-lg mx-auto my-8 p-6 w-[400px] bg-gray-200 rounded-lg shadow-lg"
+      bodyOpenClassName="body-no-scroll"
+      className="max-w-lg mx-auto my-8 p-6 w-[400px] bg-gray-200 rounded-lg shadow-lg z-50"
       overlayClassName="fixed inset-0 bg-black/30 flex items-center justify-center"
       ariaHideApp={false}
     >
@@ -86,62 +87,51 @@ const QuotesModel = ({ isOpen, onRequestClose }: QuotesModelProps) => {
             }}
           >
             {({ isSubmitting, setFieldValue, values, errors, touched }) => (
-              <Form className="flex flex-col gap-0">
-                <div className="flex flex-col gap-2 h-[70px]">
-                  <Input
-                    name="fullName"
-                    type="text"
-                    placeholder="Full Name*"
-                    onChange={(e) => setFieldValue('fullName', e.target.value)}
-                    value={values.fullName}
-                  />
-                  {touched.fullName && errors.fullName && (
-                    <div className="text-red-500 text-xs">{errors.fullName}</div>
-                  )}
-                </div>
-
-                <div className="flex flex-col gap-2 h-[70px]">
-                  <Input
-                    name="email"
-                    type="email"
-                    placeholder="Email*"
-                    onChange={(e) => setFieldValue('email', e.target.value)}
-                    value={values.email}
-                  />
-                  {touched.email && errors.email && (
-                    <div className="text-red-500 text-xs">{errors.email}</div>
-                  )}
-                </div>
-
-                <div className="flex flex-col gap-2 h-[70px]">
-                  <Input
-                    name="phone"
-                    type="text"
-                    placeholder="Phone*"
-                    onChange={(e) => setFieldValue('phone', e.target.value)}
-                    value={values.phone}
-                  />
-                  {touched.phone && errors.phone && (
-                    <div className="text-red-500 text-xs">{errors.phone}</div>
-                  )}
-                </div>
-
-                <div className="flex flex-col gap-2 h-[135px] ">
-                  <Textarea
-                    name="message"
-                    placeholder="Message*"
-                    rows={4}
-                    onChange={(e) => setFieldValue('message', e.target.value)}
-                    value={values.message}
-                  />
-                  {touched.message && errors.message && (
-                    <div className="text-red-500 text-xs">{errors.message}</div>
-                  )}
+              <Form className="flex flex-col gap-[2px]">
+                <Input
+                  name="fullName"
+                  type="text"
+                  placeholder="Full Name*"
+                  onChange={(e) => setFieldValue('fullName', e.target.value)}
+                  value={values.fullName}
+                  error={errors.fullName}
+                  touched={touched.fullName}
+                />
+                <Input
+                  name="email"
+                  type="email"
+                  placeholder="Email*"
+                  onChange={(e) => setFieldValue('email', e.target.value)}
+                  value={values.email}
+                  error={errors.email}
+                  touched={touched.email}
+                />
+                <Input
+                  name="phone"
+                  type="text"
+                  placeholder="Phone*"
+                  onChange={(e) => setFieldValue('phone', e.target.value)}
+                  value={values.phone}
+                  error={errors.phone}
+                  touched={touched.phone}
+                />
+                <div className=''>
+                <Textarea
+                  name="message"
+                  placeholder="Message*"
+                  rows={4}
+                  onChange={(e) => setFieldValue('message', e.target.value)}
+                  value={values.message}
+                  error={errors.message}
+                  touched={touched.message}
+                />
                 </div>
 
                 <div className="flex flex-col gap-2 h-[70px]">
                   <div className="flex items-center gap-2">
-                    <LoadCanvasTemplate reloadText=" " />
+                    <div className="captcha-container flex items-center gap-2 bg-white pt-1 rounded-md">
+                      <LoadCanvasTemplate reloadText=" " />
+                    </div>
                     <button
                       type="button"
                       onClick={() => loadCaptchaEnginge(6)}
@@ -150,17 +140,19 @@ const QuotesModel = ({ isOpen, onRequestClose }: QuotesModelProps) => {
                     >
                       <FiRefreshCw className="w-5 h-5 text-gray-700" />
                     </button>
+                    <div>
+
                     <Input
                       name="captchaInput"
                       type="text"
                       placeholder="Enter the CAPTCHA*"
                       onChange={(e) => setFieldValue('captchaInput', e.target.value)}
                       value={values.captchaInput}
-                    />
+                      error={errors.captchaInput}
+                      touched={touched.captchaInput}
+                      />
+                      </div>
                   </div>
-                  {touched.captchaInput && errors.captchaInput && (
-                    <div className="text-red-500 text-xs">{errors.captchaInput}</div>
-                  )}
                 </div>
 
                 <Button

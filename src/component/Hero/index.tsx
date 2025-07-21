@@ -4,7 +4,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/autoplay';
-import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { FaInfoCircle } from 'react-icons/fa';
 import { CiCalculator1 } from 'react-icons/ci';
 import Button from '../common/Button';

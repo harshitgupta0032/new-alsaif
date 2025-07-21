@@ -1,15 +1,20 @@
 import React from 'react';
 
 interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
-  // We can extend this with more props like label, error, etc. in the future
+  error?: string;
+  touched?: boolean;
 }
 
-const Textarea: React.FC<TextareaProps> = (props) => {
+const Textarea: React.FC<TextareaProps> = ({ error, touched, ...props }) => {
+  const hasError = touched && error;
   return (
-    <textarea
-      {...props}
-      className={`w-full bg-white px-3 py-2 rounded-md resize-none focus:outline-none focus:ring-2 min-h[120px] focus:ring-blue-400 ${props.className || ''}`}
-    />
+    <div className="w-full h-[120px]">
+      <textarea
+        {...props}
+        className={`w-full bg-white px-3 py-1 rounded-md resize-none focus:outline-none focus:ring-2 ${hasError ? 'outline-red-500 ring-blue-400' : 'focus:ring-blue-400'} ${props.className || ''}`}
+      />
+      {hasError && <div className="text-red-500 text-[12px] 2xl:text-xs ">{error}</div>}
+    </div>
   );
 };
 
