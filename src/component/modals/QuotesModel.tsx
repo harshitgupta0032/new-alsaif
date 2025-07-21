@@ -50,22 +50,22 @@ const QuotesModel = ({ isOpen, onRequestClose }: QuotesModelProps) => {
       onAfterOpen={handleAfterOpen}
       contentLabel="Quotes Model"
       bodyOpenClassName="body-no-scroll"
-      className="max-w-lg mx-auto my-8 p-6 w-[400px] bg-gray-200 rounded-lg shadow-lg z-50"
-      overlayClassName="fixed inset-0 bg-black/30 flex items-center justify-center"
+      className="max-w-lg mx-auto px-6 pb-4 pt-2 w-[400px] bg-gray-200 rounded-lg shadow-lg z-[110]"
+      overlayClassName="fixed inset-0 bg-black/30 flex items-center justify-center z-[100]"
       ariaHideApp={false}
     >
       <div className="flex flex-col justify-between items-center">
         <div className="flex items-start justify-end w-full">
           <button
             onClick={onRequestClose}
-            className="cursor-pointer hover:bg-gray-200 rounded-full transition"
+            className="cursor-pointer text-black/90 hover:bg-gray-200 rounded-full transition"
           >
             <IoClose className="size-7" />
           </button>
         </div>
 
         <div className="w-full">
-          <h2 className="text-2xl font-bold text-center mb-2">Contact Us</h2>
+          <h2 className="text-2xl text-black font-bold text-center mb-2">Contact Us</h2>
           <Formik
             initialValues={contactInitialValues}
             validationSchema={contactValidationSchema}
@@ -116,20 +116,20 @@ const QuotesModel = ({ isOpen, onRequestClose }: QuotesModelProps) => {
                   touched={touched.phone}
                 />
                 <div className=''>
-                <Textarea
-                  name="message"
-                  placeholder="Message*"
-                  rows={4}
-                  onChange={(e) => setFieldValue('message', e.target.value)}
-                  value={values.message}
-                  error={errors.message}
-                  touched={touched.message}
-                />
+                  <Textarea
+                    name="message"
+                    placeholder="Message*"
+                    rows={4}
+                    onChange={(e) => setFieldValue('message', e.target.value)}
+                    value={values.message}
+                    error={errors.message}
+                    touched={touched.message}
+                  />
                 </div>
 
-                <div className="flex flex-col gap-2 h-[70px]">
-                  <div className="flex items-center gap-2">
-                    <div className="captcha-container flex items-center gap-2 bg-white pt-1 rounded-md">
+                <div className="flex mt-2">
+                  <div className="flex items-start gap-">
+                    <div className='flex items-center justify-center py-[1px] px-[1px] overflow-hidden bg-white rounded-lg'>
                       <LoadCanvasTemplate reloadText=" " />
                     </div>
                     <button
@@ -138,21 +138,20 @@ const QuotesModel = ({ isOpen, onRequestClose }: QuotesModelProps) => {
                       className="p-2 rounded-full cursor-pointer hover:bg-gray-300 transition"
                       aria-label="Reload CAPTCHA"
                     >
-                      <FiRefreshCw className="w-5 h-5 text-gray-700" />
+                      <FiRefreshCw className="size-4 text-gray-700" />
                     </button>
-                    <div>
-
-                    <Input
-                      name="captchaInput"
-                      type="text"
-                      placeholder="Enter the CAPTCHA*"
-                      onChange={(e) => setFieldValue('captchaInput', e.target.value)}
-                      value={values.captchaInput}
-                      error={errors.captchaInput}
-                      touched={touched.captchaInput}
-                      />
-                      </div>
                   </div>
+                    <div>
+                      <Input
+                        name="captchaInput"
+                        type="text"
+                        placeholder="Enter the CAPTCHA*"
+                        onChange={(e) => setFieldValue('captchaInput', e.target.value)}
+                        value={values.captchaInput}
+                        error={errors.captchaInput}
+                        touched={touched.captchaInput}
+                      />
+                    </div>
                 </div>
 
                 <Button

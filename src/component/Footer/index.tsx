@@ -37,8 +37,8 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-blue-950/40 text-white pt-12 pb-6 px-4 sm:px-10 md:px-32">
-      <div className="w-full mx-auto  grid grid-cols-1 sm:flex sm:justify-between sm:items-start sm:flex-wrap md:flex md:justify-between md:items-start gap-10 pb-8 border-b-2 border-neutral-800">
+    <footer className="bg-black/80 text-white pt-12 pb-6 px-4 sm:px-10 md:px-32 ">
+      <div className="w-full mx-auto  grid grid-cols-1 sm:flex sm:justify-between sm:items-start sm:flex-wrap md:flex md:justify-between md:items-start 2xl:justify-center 2xl:gap-75 gap-10 pb-8 border-b-2 border-neutral-800">
         {/* Brand & Socials */}
         <div>
           <div className="flex items-center gap-3 mb-4">

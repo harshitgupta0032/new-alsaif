@@ -36,7 +36,7 @@ const QuoteForm = () => {
               name="mobileNumber"
               type="tel"
               placeholder="Your mobile number"
-              className="w-full border border-gray-300 text-xs2xl:text-[17px] px-3 py-[6px] 2xl:py-3 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="w-full border border-gray-300 text-xs 2xl:text-[17px] px-3 py-[6px] 2xl:py-3 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
             />
             <ErrorMessage name="mobileNumber" component="p" className="text-red-500 text-xs 2xl:text-[17px]  mt-[2px]" />
           </div>

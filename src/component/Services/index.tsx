@@ -2,6 +2,8 @@
 import { FaTruck, FaShippingFast, FaWarehouse, FaCheckCircle } from 'react-icons/fa';
 import Button from '../common/Button';
 import { useScrollNavigation } from '@/hooks/UseScrollNavigaion';
+import QuotesModel from '../modals/QuotesModel';
+import React from 'react';
 
 const services = [
   {
@@ -37,6 +39,8 @@ const Services = () => {
 
   const ScrollNavigation = useScrollNavigation();
 
+  const [isOpen, setIsOpen] = React.useState(false);
+
   return (
     <section
       id="services"
@@ -46,7 +50,7 @@ const Services = () => {
         <h2 className="text-black text-2xl  sm:text-3xl md:text-4xl lg:text-[36px] 2xl:text-[40px] font-bold mb-4">
           <span className="font-bold text-blue-500">Tailored Transportation Solutions for Every Industry</span>
         </h2>
-        <p className="text-gray-600 pb-3 max-w-2xl mx-auto text-sm sm:text-base md:text-lg lg:text-xl mb-10">
+        <p className="text-gray-600 pb-3 max-w-2xl mx-auto text-[10px] sm:text-[12px] md:text-[13px] lg:text-[15px] 2xl:text-[18px] mb-5">
           From logistics to construction, our fleet delivers efficiency and reliability.
         </p>
 
@@ -54,7 +58,7 @@ const Services = () => {
           {services.map((service) => (
             <div
               key={service.title}
-              className={`group rounded-2xl shadow-sm p-5 sm:p-6 text-left flex flex-col gap-3 h-auto min-h-[300px] sm:h-[370px] md:h-[550px] w-[400px] mx-auto sm:w-[300px] md:w-auto transition hover:shadow-2xl ${service.bgColor} relative`}
+              className={`group rounded-2xl shadow-sm p-5 sm:p-6 text-left flex flex-col gap-3 h-auto min-h-[300px] sm:min-h-[390px] lg:min-h-[450px] 2xl:h-[550px]  mx-auto sm:w-[270px] md:w-auto transition hover:shadow-2xl ${service.bgColor} relative`}
             >
               <div className="flex items-center justify-start gap-2 mb-1 ">
                 <div
@@ -82,16 +86,23 @@ const Services = () => {
                   ))}
                 </ul>
               </div>
-              <Button
-                onClick={() => ScrollNavigation({ name: 'quotes', href: `#get-quotes` })}
-                className='rounded-xl mt-4  w-fit h-fit  2xl:text-lg'
-              >
-                Get Quotes Now
-              </Button>
+              <div className="mt-auto flex justify-center items-center">
+                <Button
+                  onClick={() => setIsOpen(true)}
+                  className='rounded-xl mt-4  w-fit h-fit  2xl:text-lg'
+                >
+                  Get Quotes Now
+                </Button>
+              </div>
             </div>
           ))}
         </div>
       </div>
+
+      <QuotesModel
+        isOpen={isOpen}
+        onRequestClose={() => setIsOpen(false)}
+      />
     </section>
   );
 };

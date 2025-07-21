@@ -49,12 +49,12 @@ const fleetFeatures = [
 
 const About = () => {
   return (
-    <section id='about' className="text-center text-neutral-800 bg-white px-4 md:px-10 lg:px-20 py-10 ">
+    <section id='about' className="text-center text-neutral-800 bg-white px-4 md:px-10 py-10 ">
       <div>
-        <h2 className="text-black text-2xl  sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+        <h2 className="text-black text-2xl  sm:text-3xl md:text-4xl lg:text-[36px] 2xl:text-[40px] font-bold mb-4">
           Why <span className="text-blue-500">ALSAIF Transportation?</span>
         </h2>
-        <p className="text-gray-500 max-w-2xl mx-auto mb-12  md:text-lg 2xl:text-xl">
+        <p className="text-gray-500 text-[10px] sm:text-[12px] md:text-[13px] lg:text-[15px] 2xl:text-[18px] mb-5">
           Partner with us for unmatched reliability and tailored solutions. 
         </p>
 

@@ -35,10 +35,10 @@ const Fleet = () => {
   return (
   <div className='min-h-screen'>
     <section id='fleet' className="py-13 px-4 md:px-8 lg:px-21 bg-[#f9fbff] text-center">
-      <h2 className="text-black text-2xl lg:text-4xl font-bold mb-4">
+      <h2 className="text-black text-2xl  sm:text-3xl md:text-4xl lg:text-[36px] 2xl:text-[40px] font-bold  mb-4">
         Our <span className="text-blue-500">Premium Fleet</span>
       </h2>
-      <p className="text-gray-600 max-w-2xl mx-auto lg:text-lg xl:text-xl mb-12">
+      <p className="text-gray-600 text-[10px] sm:text-[12px] md:text-[13px] lg:text-[15px] 2xl:text-[18px] mb-5">
         Modern, well-maintained vehicles equipped with latest safety features and comfort amenities for your peace of mind.
       </p>
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
