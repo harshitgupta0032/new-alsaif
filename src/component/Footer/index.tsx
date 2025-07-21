@@ -14,8 +14,8 @@ const QuickLinks = [
 ];
 
 const ContactInfo = [
-  { icon: <FaPhoneAlt className="text-blue-400 w-5 h-5 flex-shrink-0" />, text: '+966-XXX-XXXX' },
-  { icon: <FaEnvelope className="text-blue-400 w-5 h-5 flex-shrink-0" />, text: 'info@alsaiftransport.com' },
+  { icon: <FaPhoneAlt className="text-blue-400 w-5 h-5 flex-shrink-0" />, text: '+966596003333' },
+  { icon: <FaEnvelope className="text-blue-400 w-5 h-5 flex-shrink-0" />, text: 'social.media@alsaifexpress.com' },
   { icon: <FaMapMarkerAlt className="text-blue-400 w-5 h-5 flex-shrink-0" />, text: 'Saudi Arabia' },
   { icon: <FaClock className="text-blue-400 w-5 h-5 flex-shrink-0" />, text: '24/7 Support' },
 ];

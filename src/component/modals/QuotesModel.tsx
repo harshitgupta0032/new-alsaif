@@ -8,34 +8,16 @@ import { IoClose } from 'react-icons/io5';
 import { FiRefreshCw } from 'react-icons/fi';
 import Modal from 'react-modal';
 import { loadCaptchaEnginge, validateCaptcha, LoadCanvasTemplate } from 'react-simple-captcha';
-import * as Yup from 'yup';
 import Input from '../common/Input';
 import Textarea from '../common/Textarea';
 import Button from '../common/Button';
 import toast from 'react-hot-toast';
+import { contactInitialValues, contactValidationSchema, QuotesModelProps } from '@/schema/contactUsSchema';
 
-interface QuotesModelProps {
-  isOpen: boolean;
-  onRequestClose: () => void;
-}
 
-const contactInitialValues = {
-  fullName: '',
-  email: '',
-  phone: '',
-  message: '',
-  captchaInput: '',
-};
-
-const contactValidationSchema = Yup.object({
-  fullName: Yup.string().min(2).required('Full Name is required'),
-  email: Yup.string().email('Invalid email').required('Email is required'),
-  phone: Yup.string().min(8).required('Phone is required'),
-  message: Yup.string().required('Message is required'),
-  captchaInput: Yup.string().required('Please enter the CAPTCHA'),
-});
 
 const QuotesModel = ({ isOpen, onRequestClose }: QuotesModelProps) => {
+
   const handleAfterOpen = () => {
     // Use a timeout to ensure the DOM is fully painted before drawing on the canvas
     setTimeout(() => {
@@ -107,6 +89,7 @@ const QuotesModel = ({ isOpen, onRequestClose }: QuotesModelProps) => {
                   touched={touched.email}
                 />
                 <Input
+                  label=''
                   name="phone"
                   type="text"
                   placeholder="Phone*"
@@ -117,6 +100,7 @@ const QuotesModel = ({ isOpen, onRequestClose }: QuotesModelProps) => {
                 />
                 <div className=''>
                   <Textarea
+                    label=''
                     name="message"
                     placeholder="Message*"
                     rows={4}
@@ -127,8 +111,8 @@ const QuotesModel = ({ isOpen, onRequestClose }: QuotesModelProps) => {
                   />
                 </div>
 
-                <div className="flex mt-2">
-                  <div className="flex items-start gap-">
+                <div className="flex flex-col md:flex-row mt-2">
+                  <div className="flex items-start ">
                     <div className='flex items-center justify-center py-[1px] px-[1px] overflow-hidden bg-white rounded-lg'>
                       <LoadCanvasTemplate reloadText=" " />
                     </div>
@@ -141,17 +125,17 @@ const QuotesModel = ({ isOpen, onRequestClose }: QuotesModelProps) => {
                       <FiRefreshCw className="size-4 text-gray-700" />
                     </button>
                   </div>
-                    <div>
-                      <Input
-                        name="captchaInput"
-                        type="text"
-                        placeholder="Enter the CAPTCHA*"
-                        onChange={(e) => setFieldValue('captchaInput', e.target.value)}
-                        value={values.captchaInput}
-                        error={errors.captchaInput}
-                        touched={touched.captchaInput}
-                      />
-                    </div>
+                  <div className="flex-1 mt-2 md:mt-0"> 
+                    <Input
+                      name="captchaInput"
+                      type="text"
+                      placeholder="Enter the CAPTCHA*"
+                      onChange={(e) => setFieldValue('captchaInput', e.target.value)}
+                      value={values.captchaInput}
+                      error={errors.captchaInput}
+                      touched={touched.captchaInput}
+                    />
+                  </div>
                 </div>
 
                 <Button
