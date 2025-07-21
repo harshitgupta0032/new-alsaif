@@ -23,7 +23,6 @@ export const validationSchema = Yup.object({
   serviceRequired: Yup.string().required('Service is required'),
   additionalDetails: Yup.string().required('Additional Details are required'),
 });
-
 export const serviceOptions = [
   { value: '', label: 'Select service type' },
   { value: 'delivery-truck', label: 'Delivery Truck Rental' },
@@ -36,3 +35,4 @@ export const serviceOptions = [
   { value: 'logistics-support', label: 'Logistics Support' },
   { value: 'other', label: 'Other' },
 ];
+

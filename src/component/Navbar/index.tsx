@@ -3,6 +3,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { FaTruck } from 'react-icons/fa';
 import Button from '../common/Button';
 import { useScrollNavigation } from '@/hooks/UseScrollNavigaion';
+import QuotesModel from '../modals/QuotesModel';
 
 const navLinks = [
   { name: 'Home', href: '#home' },
@@ -16,6 +17,8 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const drawerRef = useRef<HTMLDivElement>(null);
+    const [isModalOpen, setIsModalOpen] = React.useState(false);
+  
 
   const ScrollNavigation = useScrollNavigation(setMenuOpen, setActiveSection);
 
@@ -38,6 +41,29 @@ const Navbar = () => {
     window.addEventListener('hashchange', handleHashChange);
     handleHashChange();
     return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
+  useEffect(() => {
+    const sectionIds = navLinks.map(link => link.href.replace('#', ''));
+    function onScroll() {
+      let currentSection = sectionIds[0];
+      for (let i = 0; i < sectionIds.length; i++) {
+        const section = document.getElementById(sectionIds[i]);
+        if (section) {
+          const rect = section.getBoundingClientRect();
+          // You can adjust the offset as needed
+          if (rect.top <= 120 && rect.bottom > 120) {
+            currentSection = sectionIds[i];
+            break;
+          }
+        }
+      }
+      setActiveSection(currentSection);
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    // Run on mount in case user is not at top
+    onScroll();
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   return (
@@ -118,7 +144,7 @@ const Navbar = () => {
                 type="button"
                 name=""
                 className="rounded-full text-sm 2xl:text-[17px] mt-4 md:mt-0 2xl:py-[7px]"
-                onClick={() => ScrollNavigation({ name: 'Get Quotes', href: '#get-quotes' })}
+                onClick={() => setIsModalOpen(true)}
               >
                 Get Quotes
               </Button>
@@ -126,6 +152,8 @@ const Navbar = () => {
           </ul>
         </div>
       </div>
+      <QuotesModel isOpen={isModalOpen} onRequestClose={() => setIsModalOpen(false)} />
+
     </nav>
   );
 };

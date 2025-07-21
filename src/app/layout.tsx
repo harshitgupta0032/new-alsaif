@@ -5,6 +5,7 @@ import Navbar from "@/component/Navbar";
 import { SiWhatsapp } from "react-icons/si";
 import { FaCircle } from "react-icons/fa";
 import Footer from "@/component/Footer";
+import { Toaster } from "react-hot-toast";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,7 +32,8 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-neutral-50 min-h-screen flex flex-col`}
       >
-        <header className="sticky top-0 z-50" >
+        <Toaster position="top-center" />
+        <header className="sticky top-0 z-50">
           <Navbar />
         </header>
         <main className="flex-1 bg-white">
@@ -42,7 +44,7 @@ export default function RootLayout({
           <div className="p-0 relative cursor-pointer">
             <FaCircle className="text-red-600 size-2 md:size-3 absolute top-1 md:top-[-4px] right-[-2px]" />
             <div className=" bg-green-400 p-[4px] md:p-2 flex justify-center items-center size-10 md:size-12 rounded-full">
-              <SiWhatsapp className="size-5" />
+              <SiWhatsapp className="size-5 text-white" />
             </div>
           </div>
         </div>
