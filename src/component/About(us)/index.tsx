@@ -142,36 +142,6 @@ const About = () => {
           />
         </div>
       </div>
-
-      {/* <div className="w-full flex">
-        <div className="text-left w-1/2">
-          <h2 className="text-3xl md:text-4xl 2xl:text-5xl font-bold mb-4">
-            Modern Truck <span className="text-blue-400">Fleet</span>
-          </h2>
-          <p className="text-gray-600 mb-6 max-w-xl ">
-            Our modern truck fleet is equipped with advanced safety features and maintained to the highest standards.
-            Every vehicle undergoes regular inspections to ensure optimal performance and safety.
-          </p>
-
-          <ul className="space-y-4">
-            {fleetFeatures.map((feature, idx) => (
-              <li key={idx} className="flex items-center  text-gray-800">
-                <FaCheckCircle className="text-green-600 mr-3" />
-                <span>{feature}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="rounded-xl w-1/2 overflow-hidden shadow-md ">
-          <Image
-            src="/assets/truck (3).jpg" 
-            alt="Fleet Maintenance"
-            width={600}
-            height={400}
-            className="w-full h-auto md:h-[400px] object-cover"
-          />
-        </div>
-      </div> */}
     </section>
   );
 };

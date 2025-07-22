@@ -31,7 +31,7 @@ const QuotesModel = ({ isOpen, onRequestClose }: QuotesModelProps) => {
       onAfterOpen={handleAfterOpen}
       contentLabel="Quotes Model"
       bodyOpenClassName="body-no-scroll"
-      className="max-w-lg mx-auto px-6 pb-4 pt-2 w-[400px] bg-gray-200 rounded-lg shadow-lg z-[110]"
+      className="max-w-lg mx-auto px-6 pb-4 pt-2 w-[600px] bg-gray-200 rounded-lg shadow-lg z-[110]"
       overlayClassName="fixed inset-0 bg-black/30 flex items-center justify-center z-[100]"
       ariaHideApp={false}
     >
@@ -67,8 +67,9 @@ const QuotesModel = ({ isOpen, onRequestClose }: QuotesModelProps) => {
             }}
           >
             {({ isSubmitting, setFieldValue, values, errors, touched }) => (
-              <Form className="flex flex-col gap-[2px]">
+              <Form className="flex flex-col gap-2">
                 <Input
+                label='Name'
                   name="fullName"
                   type="text"
                   placeholder="Full Name*"
@@ -79,6 +80,7 @@ const QuotesModel = ({ isOpen, onRequestClose }: QuotesModelProps) => {
                 />
                 <Input
                   name="email"
+                  label='Email'
                   type="email"
                   placeholder="Email*"
                   onChange={(e) => setFieldValue('email', e.target.value)}
@@ -87,7 +89,7 @@ const QuotesModel = ({ isOpen, onRequestClose }: QuotesModelProps) => {
                   touched={touched.email}
                 />
                 <Input
-                  label=''
+                  label='Phone Number'
                   name="phone"
                   type="text"
                   placeholder="Phone*"
@@ -98,7 +100,7 @@ const QuotesModel = ({ isOpen, onRequestClose }: QuotesModelProps) => {
                 />
                 <div className=''>
                   <Textarea
-                    label=''
+                    label='Message'
                     name="message"
                     placeholder="Message*"
                     rows={4}
@@ -109,7 +111,7 @@ const QuotesModel = ({ isOpen, onRequestClose }: QuotesModelProps) => {
                   />
                 </div>
 
-                <div className="flex flex-col md:flex-row mt-2">
+                <div className="flex flex-col md:flex-row">
                   <div className="flex items-start ">
                     <div className='flex items-center justify-center py-[1px] px-[1px] overflow-hidden bg-white rounded-lg'>
                       <LoadCanvasTemplate reloadText=" " />
@@ -127,11 +129,12 @@ const QuotesModel = ({ isOpen, onRequestClose }: QuotesModelProps) => {
                     <Input
                       name="captchaInput"
                       type="text"
-                      placeholder="Enter the CAPTCHA*"
+                      placeholder="Enter The Captcha*"
                       onChange={(e) => setFieldValue('captchaInput', e.target.value)}
                       value={values.captchaInput}
                       error={errors.captchaInput}
                       touched={touched.captchaInput}
+                      className='h-[40px]'
                     />
                   </div>
                 </div>
