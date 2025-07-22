@@ -1,82 +1,99 @@
+'use client';
 
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Formik, Form } from 'formik';
 import { FaPaperPlane } from 'react-icons/fa';
-import { FormValues, initialValues, validationSchema } from '@/schema/quotesFormSchema';
 import Input from '../common/Input';
 import Textarea from '../common/Textarea';
 import Button from '../common/Button';
+import {
+  FormValues,
+  initialValues,
+  validationSchema,
+} from '@/schema/quotesFormSchema';
+
+import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
+import ReCAPTCHA from 'react-google-recaptcha';
+
+
 
 const QuoteForm = () => {
-  const onSubmit = (values: FormValues, actions: { setSubmitting: (isSubmitting: boolean) => void; resetForm: () => void }) => {
-    console.log('Form submitted:', values);
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
+
+  const onSubmit = async (
+    values: FormValues,
+    actions: {
+      setSubmitting: (isSubmitting: boolean) => void;
+      resetForm: () => void;
+      setFieldError: (field: string, message: string) => void;
+      setTouched: (touched: { [field: string]: boolean }) => void;
+    }
+  ) => {
+    if (!captchaToken) {
+      actions.setFieldError('captcha', 'Please complete the CAPTCHA');
+      actions.setSubmitting(false);
+      return;
+    }
+
+    console.log('Form submitted:', values, 'CAPTCHA token:', captchaToken);
     actions.setSubmitting(false);
     actions.resetForm();
+    recaptchaRef.current?.reset();
+    setCaptchaToken(null);
   };
-
   return (
-    <Formik<FormValues> initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
-      {({ isSubmitting, setFieldValue, values, errors, touched }) => (
-        <Form className="bg-gray-200 grid grid-cols-1 gap-y-0 gap-x-5 md:gap-y-0 md:grid-cols-2 text-black placeholder:text-black/80 px-6 py-6 rounded-xl shadow-lg w-full lg:w-[600px] 2xl:w-[700px] mx-auto">
-          {/* Name */}
-          <div className=''>
-            <Input
-              label='Name'
-              id="name"
-              type="text"
-              placeholder="Enter your name"
-              onChange={(e) => setFieldValue('name', e.target.value)}
-              value={values.name}
-              error={errors.name}
-              touched={touched.name}
-              className="w-full text-xs 2xl:text-[17px] py-[6px] 2xl:py-3"
-            />
-          </div>
-
-          {/* Company Name */}
-          <div className=''>
-            <Input
-              label='Company Name'
-              id="companyName"
-              type="text"
-              placeholder="Enter your company name"
-              onChange={(e) => setFieldValue('companyName', e.target.value)}
-              value={values.companyName}
-              error={errors.companyName}
-              touched={touched.companyName}
-              className="w-full text-xs 2xl:text-[17px] py-[6px] 2xl:py-3"
-            />
-          </div>
-
-          {/* Email */}
-          <div className=''>
-            <Input
-              id="email"
-              label='Email'
-              type="email"
-              placeholder="Enter your email"
-              onChange={(e) => setFieldValue('email', e.target.value)}
-              value={values.email}
-              error={errors.email}
-              touched={touched.email}
-              className="w-full text-xs 2xl:text-[17px] py-[6px] 2xl:py-3"
-            />
-          </div>
-
-          {/* Phone Number */}
-          <div className=''>
-            <Input
-              id="phoneNumber"
-              label='Phone Number'
-              type="tel"
-              placeholder="Enter your phone number"
-              onChange={(e) => setFieldValue('phoneNumber', e.target.value)}
-              value={values.phoneNumber}
-              error={errors.phoneNumber}
-              touched={touched.phoneNumber}
-              className="w-full text-xs 2xl:text-[17px] py-[6px] 2xl:py-3"
-            />
-          </div>
+    <Formik<FormValues>
+      initialValues={initialValues}
+      validationSchema={validationSchema}
+      onSubmit={onSubmit}
+    >
+      {({ isSubmitting, setFieldValue, setFieldError, values, errors, touched }) => (
+        <Form className="bg-gray-100 grid grid-cols-1  gap-x-5 md:grid-cols-2 text-black placeholder:text-black/80 px-6 py-6 rounded-xl shadow-lg w-full lg:w-[600px] 2xl:w-[700px] mx-auto">
+          <Input
+            label="Name"
+            id="name"
+            type="text"
+            placeholder="Enter your name"
+            onChange={(e) => setFieldValue('name', e.target.value)}
+            value={values.name}
+            error={errors.name}
+            touched={touched.name}
+            className="w-full text-xs 2xl:text-[17px] py-[6px] 2xl:py-3"
+          />
+          <Input
+            label="Company Name"
+            id="companyName"
+            type="text"
+            placeholder="Enter your company name"
+            onChange={(e) => setFieldValue('companyName', e.target.value)}
+            value={values.companyName}
+            error={errors.companyName}
+            touched={touched.companyName}
+            className="w-full text-xs 2xl:text-[17px] py-[6px] 2xl:py-3"
+          />
+          <Input
+            label="Email"
+            id="email"
+            type="email"
+            placeholder="Enter your email"
+            onChange={(e) => setFieldValue('email', e.target.value)}
+            value={values.email}
+            error={errors.email}
+            touched={touched.email}
+            className="w-full text-xs 2xl:text-[17px] py-[6px] 2xl:py-3"
+          />
+          <Input
+            label="Phone Number"
+            id="phoneNumber"
+            type="tel"
+            placeholder="Enter your phone number"
+            onChange={(e) => setFieldValue('phoneNumber', e.target.value)}
+            value={values.phoneNumber}
+            error={errors.phoneNumber}
+            touched={touched.phoneNumber}
+            className="w-full text-xs 2xl:text-[17px] py-[6px] 2xl:py-3"
+          />
 
           {/* Project Details */}
           <div className="col-span-1 md:col-span-2">
@@ -92,18 +109,38 @@ const QuoteForm = () => {
               className="w-full text-xs 2xl:text-[17px] px-3 py-2 2xl:py-3 min-h-[130px] 2xl:min-h-[150px]"
             />
           </div>
+          <div className="md:col-span-2 h-[102px] mt-2 lg:mt-5 overflow-hidden w-full">
+            <div className='transform scale-78 sm:scale-84 lg:scale-116 2xl:scale-132 origin-top-left w-full'>
+              <ReCAPTCHA
+                ref={recaptchaRef}
+                sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
+                onChange={(token) => {
+                  setCaptchaToken(token);
+                  setFieldError('captcha', '');
+                }}
+                onExpired={() => {
+                  setCaptchaToken(null);
+                  setFieldError('captcha', 'CAPTCHA expired, please try again');
+                }}
+              />
+            </div>
+            {errors.captcha && (
+              <p className="text-red-500 text-[12px] md:text-[11px] 2xl:text-[14px] mt-[2px] lg:mt-[7px]">{errors.captcha}</p>
+            )}
+          </div>
 
-          {/* Submit Button */}
+
+          {/* Submit */}
           <div className="text-center col-span-1 md:col-span-2">
             <Button
               type="submit"
               disabled={isSubmitting}
-              className="inline-flex items-center cursor-pointer gap-2 text-white text-[15px] 2xl:text-xl font-semibold px-6 py-2 2xl:py-3 2xl:my-2 rounded-full shadow transition duration-300 ease-in-out disabled:opacity-50"
+              className="inline-flex items-center cursor-pointer gap-2 text-white 2xl:text-xl font-semibold md:px-6 py-2 2xl:py-3 2xl:my-2 rounded-full shadow transition duration-300 ease-in-out disabled:opacity-50"
             >
               <FaPaperPlane />
               Submit Quote Request
             </Button>
-            <p className="mt-3 text-xs 2xl:text-[17px] text-gray-600">* Required fields</p>
+            <p className="mt-3 text-xs 2xl:text-[17px] text-gray-400">* Required fields. we will response within 15 minutes</p>
           </div>
         </Form>
       )}

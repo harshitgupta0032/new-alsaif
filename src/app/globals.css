@@ -46,3 +46,8 @@ body {
 .body-no-scroll {
   overflow: hidden;
 }
+
+
+#quoteModalCaptcha{
+  background-color: white;
+}

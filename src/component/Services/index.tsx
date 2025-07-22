@@ -44,7 +44,7 @@ const Services = () => {
   return (
     <section
       id="services"
-      className="pt-10 flex justify-center items-center px-4 sm:px-6  min-h-screen md:px-8 lg:px-12 bg-white text-center"
+      className="pt-10 flex justify-center items-center min-h-screen px-4 sm:px-6 md:px-8 lg:px-12 bg-white text-center"
     >
       <div className='text-center'>
         <h2 className="text-black text-2xl  sm:text-3xl md:text-4xl lg:text-[36px] 2xl:text-[40px] font-bold mb-4">

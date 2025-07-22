@@ -68,7 +68,7 @@ const Navbar = () => {
 
   return (
     <nav className="bg-blue-50 shadow-md w-full top-0 left-0 border-b border-gray-200">
-      <div className="mx-auto flex flex-wrap items-center justify-between 2xl:justify-between px-4 sm:px-6 md:px-8 lg:px-32 2xl:px-25 w-full  py-2 md:py-3 2xl:py-4">
+      <div className="mx-auto flex flex-wrap items-center justify-between 2xl:justify-between px-4 sm:px-6 md:px-8 lg:px-12 w-full  py-2 md:py-3">
         {/* Logo and Brand */}
         <button
           type="button"

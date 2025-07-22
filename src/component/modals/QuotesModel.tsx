@@ -3,7 +3,7 @@
 declare module 'react-simple-captcha';
 
 import { Formik, Form } from 'formik';
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { IoClose } from 'react-icons/io5';
 import { FiRefreshCw } from 'react-icons/fi';
 import Modal from 'react-modal';
@@ -13,25 +13,22 @@ import Textarea from '../common/Textarea';
 import Button from '../common/Button';
 import toast from 'react-hot-toast';
 import { contactInitialValues, contactValidationSchema, QuotesModelProps } from '@/schema/contactUsSchema';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 
 
 const QuotesModel = ({ isOpen, onRequestClose }: QuotesModelProps) => {
 
-  const handleAfterOpen = () => {
-    setTimeout(() => {
-      loadCaptchaEnginge(6);
-    }, 0);
-  };
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
 
   return (
     <Modal
       isOpen={isOpen}
       onRequestClose={onRequestClose}
-      onAfterOpen={handleAfterOpen}
       contentLabel="Quotes Model"
       bodyOpenClassName="body-no-scroll"
-      className="max-w-lg mx-auto px-6 pb-4 pt-2 w-[400px] bg-gray-200 rounded-lg shadow-lg z-[110]"
+      className="max-w-lg mx-auto px-6 pb-4 pt-2 w-[300px] lg:w-[400px] 2xl:w-[450px] bg-gray-200 rounded-lg shadow-lg z-[110]"
       overlayClassName="fixed inset-0 bg-black/30 flex items-center justify-center z-[100]"
       ariaHideApp={false}
     >
@@ -51,22 +48,23 @@ const QuotesModel = ({ isOpen, onRequestClose }: QuotesModelProps) => {
             initialValues={contactInitialValues}
             validationSchema={contactValidationSchema}
             onSubmit={(values, actions) => {
-              if (!validateCaptcha(values.captchaInput)) {
-                actions.setFieldError('captchaInput', 'CAPTCHA did not match. Try again.');
-                loadCaptchaEnginge(6);
+
+              if (!captchaToken) {
+                actions.setFieldError('captcha', 'Please complete the CAPTCHA');
                 actions.setSubmitting(false);
                 return;
               }
 
+              // Form is valid
               console.log('Contact form submitted:', values);
               toast.success('Form submitted successfully!');
               actions.resetForm();
               loadCaptchaEnginge(6);
               actions.setSubmitting(false);
-              onRequestClose(); 
+              onRequestClose(); // Optionally close modal on success
             }}
           >
-            {({ isSubmitting, setFieldValue, values, errors, touched }) => (
+            {({ isSubmitting, setFieldValue, setFieldError, values, errors, touched }) => (
               <Form className="flex flex-col gap-[2px]">
                 <Input
                   name="fullName"
@@ -109,37 +107,37 @@ const QuotesModel = ({ isOpen, onRequestClose }: QuotesModelProps) => {
                   />
                 </div>
 
-                <div className="flex flex-col md:flex-row mt-2">
-                  <div className="flex items-start ">
-                    <div className='flex items-center justify-center py-[1px] px-[1px] overflow-hidden bg-white rounded-lg'>
-                      <LoadCanvasTemplate reloadText=" " />
-                    </div>
-                    <button
-                      type="button"
-                      onClick={() => loadCaptchaEnginge(6)}
-                      className="p-2 rounded-full cursor-pointer hover:bg-gray-300 transition"
-                      aria-label="Reload CAPTCHA"
-                    >
-                      <FiRefreshCw className="size-4 text-gray-700" />
-                    </button>
-                  </div>
-                  <div className="flex-1 mt-2 md:mt-0"> 
-                    <Input
-                      name="captchaInput"
-                      type="text"
-                      placeholder="Enter the CAPTCHA*"
-                      onChange={(e) => setFieldValue('captchaInput', e.target.value)}
-                      value={values.captchaInput}
-                      error={errors.captchaInput}
-                      touched={touched.captchaInput}
+                <div className="col-span-2 h-[102px] mt-2 lg:mt-5 ">
+
+                  {/* ReCAPTCHA container */}
+                  <div className="transform scale-[0.83] lg:scale-[1.16] 2xl:scale-[1.32] origin-left">
+                    <ReCAPTCHA
+                      ref={recaptchaRef}
+                      sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
+                      onChange={(token) => {
+                        setCaptchaToken(token);
+                        setFieldError('captcha', '');
+                      }}
+                      onExpired={() => {
+                        setCaptchaToken(null);
+                        setFieldError('captcha', 'CAPTCHA expired, please try again');
+                      }}
                     />
                   </div>
+
+                  {/* Error message */}
+                  {errors.captcha && (
+                    <p className="text-red-500 text-[12px] md:text-[11px] 2xl:text-[14px] mt-[2px] lg:mt-[7px]">
+                      {errors.captcha}
+                    </p>
+                  )}
                 </div>
+
 
                 <Button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded mt-2"
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded  md:mt-2"
                 >
                   Submit
                 </Button>

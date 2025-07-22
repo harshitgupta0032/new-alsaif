@@ -1,7 +1,6 @@
 import * as Yup from 'yup';
 
 export interface QuotesModelProps {
-
   isOpen: boolean;
   onRequestClose: () => void;
 }
@@ -11,7 +10,7 @@ export const contactInitialValues = {
   email: '',
   phone: '',
   message: '',
-  captchaInput: '',
+  captcha: '',
 };
 
 export const contactValidationSchema = Yup.object({
@@ -19,5 +18,5 @@ export const contactValidationSchema = Yup.object({
   email: Yup.string().email('Invalid email').required('Email is required'),
   phone: Yup.string().min(8).required('Phone is required'),
   message: Yup.string().required('Message is required'),
-  captchaInput: Yup.string().required('Please enter the CAPTCHA'),
+  captcha: Yup.string().required('CAPTCHA is required'),
 });
