@@ -1,10 +1,8 @@
 'use client';
 import React, { useState, useRef, useEffect } from 'react';
-import { FaTruck } from 'react-icons/fa';
 import Button from '../common/Button';
 import { useScrollNavigation } from '@/hooks/UseScrollNavigaion';
 import QuotesModel from '../modals/QuotesModel';
-import { useTranslation } from 'react-i18next';
 
 
 
@@ -17,7 +15,6 @@ const Navbar = () => {
 
   const ScrollNavigation = useScrollNavigation(setMenuOpen, setActiveSection);
 
-  const { t } = useTranslation('common');
 
   const navLinks = [
   { name: 'Home', href: '#home' },
