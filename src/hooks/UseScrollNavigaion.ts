@@ -10,7 +10,7 @@ export const useScrollNavigation = (
       home: -80,
       services: -80,
       fleet: -60,
-      about: -80,
+      about: -100,
       contact: -80,
       'get-quotes': -68,
     };

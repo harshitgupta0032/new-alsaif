@@ -48,12 +48,12 @@ const Input: React.FC<InputProps> = ({ label, error, touched, ...props }) => {
   const hasError = touched && error;
   const id = props.id || props.name;
 
-  const containerMinHeight = label ? 'min-h-[75px] 2xl:min-h-[105px]' : 'min-h-[60px] 2xl:min-h-[80px]';
+  const containerMinHeight = label ? 'min-h-[105px]' : 'min-h-[60px] 2xl:min-h-[80px]';
 
   return (
-    <div className={`w-full  ${containerMinHeight}`}>
+    <div className={`w-full order border-red-900  ${containerMinHeight}`}>
       {label && (
-        <label htmlFor={id} className="block text-sm 2xl:text-lg mb-[1px] text-black/80">
+        <label htmlFor={id} className="block mb-[3px] text-black/60">
           {label}
           {props.required && <span className="text-red-500">*</span>}
         </label>
@@ -61,13 +61,13 @@ const Input: React.FC<InputProps> = ({ label, error, touched, ...props }) => {
       <input
         id={id}
         {...props}
-        className={`w-full bg-white text-xs 2xl:text-[17px] px-3 py-2 2xl:py-3 text-black/80 placeholder:text-black/40 rounded-md focus:outline-none focus:ring-2 ${
+        className={`w-full bg-white text-xs 2xl:text-[17px] px-2  h-[50px] 2xl:py-3 text-black/80 placeholder:text-black/40 placeholder:text-[14px] placeholder:font-450 rounded-md focus:outline-none focus:ring-2 ${
           hasError
             ? ''
             : 'focus:ring-blue-400'
         } ${props.className || ''}`}
       />
-      {hasError && <div className="text-red-500 text-[12px] 2xl:text-[14px] mt-[2px]">{error}</div>}
+      {hasError && <div className="text-red-500 text-[13px] ps-2  mt-[2px]">{error}</div>}
     </div>
   );
 };

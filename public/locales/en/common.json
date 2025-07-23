@@ -1,0 +1,19 @@
+{
+  "name": "Name",
+  "company_name": "Company Name",
+  "email": "Email",
+  "phone_number": "Phone Number",
+  "project_details": "Project Details (optional)",
+  "project_details_placeholder": "Tell us more about your project...",
+  "submit_quote": "Submit Quote Request",
+  "required_fields": "* Required fields. we will respond within 15 minutes",
+  "captcha_error": "Please complete the CAPTCHA",
+  "captcha_expired": "CAPTCHA expired, please try again",
+  "navbar_home": "Home",
+  "navbar_about": "About Us",
+  "navbar_services": "Services",
+  "navbar_fleet": "Fleet",
+  "navbar_quotes": "Quotes",
+  "navbar_faq": "FAQ",
+  "navbar_contact": "Contact"
+}

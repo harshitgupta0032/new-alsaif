@@ -16,7 +16,7 @@ const Textarea: React.FC<TextareaProps> = ({ label, error, touched, ...props }) 
   return (
     <div className={`w-full ${containerHeight}`}>
       {label && (
-        <label htmlFor={id} className="block text-sm 2xl:text-lg mb-[1px] text-black/80">
+        <label htmlFor={id} className="block text-sm 2xl:text-lg mb-[3px] text-black/60">
           {label}
           {props.required && <span className="text-red-500">*</span>}
         </label>
@@ -24,11 +24,9 @@ const Textarea: React.FC<TextareaProps> = ({ label, error, touched, ...props }) 
       <textarea
         id={id}
         {...props}
-        className={`w-full bg-white text-xs 2xl:text-[17px] px-3 py-2 2xl:py-3 text-black placeholder:text-black/40 rounded-md focus:outline-none focus:ring-2  ${hasError ? '' : 'ring-blue-400'} ${props.className || ''}`}
-
-        // className={`w-full text-sm text-black placeholder:text-black/80 bg-white px-3 py-1 rounded-md resize-none focus:outline-none focus:ring-2 ${hasError ? 'border-red-500 ring-red-500' : 'border-transparent ring-blue-400'} ${props.className || ''}`}
+        className={`w-full bg-white text-xs 2xl:text-[17px] px-2 py-2 2xl:py-3 text-black/80 placeholder:text-black/40 placeholder:text-[13px] placeholder:font-[500] rounded-md focus:outline-none focus:ring-2  ${hasError ? '' : 'ring-blue-400'} ${props.className || ''}`}
       />
-      {hasError && <div className="text-red-500 text-[11px] 2xl:text-[14px] ">{error}</div>}
+      {hasError && <div className="text-red-500 ps-2 text-[13px] ">{error}</div>}
     </div>
   );
 };

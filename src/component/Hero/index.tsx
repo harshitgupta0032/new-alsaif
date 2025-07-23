@@ -54,25 +54,25 @@ const Hero = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/50 to-black/90" />
         <div className="absolute inset-0 z-20 flex bg-black/40 flex-col items-center justify-center gap-3 w-full px-4 sm:px-8 py-12 md:py-20 text-center">
           <div>
-            <h1 className="text-white font-extrabold text-lg sm:text-2xl  md:text-[36px] 2xl:text-[48px] mb-4 tracking-tight">
-              <span className="text-blue-400 border-white">ALSAIF Group</span> for Land Transport <br className="hidden md:block" />
+            <h1 className="text-white font-extrabold text-[22px] sm:text-2xl  md:text-[36px] lg:text-[47px] leading-14 2xl:text-[58px] mb-7 -tracking-tight">
+              <span className="text-blue-400 ">ALSAIF Group</span> for Land Transport <br className="hidden md:block" />
               <span>Powering Your Business</span> with <br className="hidden md:block" />
               <span className="text-blue-400">Reliable Fleet Solutions</span>
             </h1>
-            <p className="px-6 text-gray-200 text-[10px] md:text-[12px] lg:text-[15px] 2xl:text-[20px] max-w-2xl mx-auto mb-8 font-medium drop-shadow">
+            <p className="px-6 text-gray-200 text-[10px] md:text-[15px] lg:text-[20px] 2xl:text-[20px] max-w-2xl mx-auto mb-8 font-medium drop-shadow -tracking-tighter">
               Access our diverse fleet of trucks, trailers, and tippers for seamless logistics and construction operations.
             </p>
           </div>
           <div className="flex flex-wrap flex-row gap-4 w-full sm:w-auto justify-center items-center mb-8">
             <Button
-              className="flex items-center justify-center -tracking-tighter border-2 border-blue-500 hover:border-white hover:bg-white hover:text-blue-600 text-sm  gap-2 md:px-2 2xl:px-6 md:py-2 2xl:py-3 rounded-full md:text-[14px] 2xl:text-[17px] shadow-lg transition"
+              className="flex items-center justify-center -tracking-tighter border-2 border-[#006fba] hover:border-white hover:bg-white hover:text-[#006fba] text-sm  gap-2 md:px-2 2xl:px-6 md:py-2 2xl:py-3 rounded-full md:text-[14px] 2xl:text-[17px] shadow-lg transition"
               onClick={() => setIsModalOpen(true)}
             >
-              <CiCalculator1 className=" hover:bg-blue-600 text-2xl" />
+              <CiCalculator1 className=" hover:bg-[#006fba] text-2xl" />
               Get Instant Quote
             </Button>
             <Button
-              className="flex items-center justify-center -tracking-tighter gap-2 md:px-2 md:py-2 2xl:px-6 2xl:py-3 bg-transparent rounded-full border-2 border-white text-white   text-sm  md:text-[14px] 2xl:text-[17px] hover:bg-white hover:text-blue-700 transition"
+              className="flex items-center justify-center -tracking-tighter gap-2 md:px-2 md:py-2 2xl:px-6 2xl:py-3 bg-transparent rounded-full border-2 border-white text-white   text-sm  md:text-[14px] 2xl:text-[17px] hover:bg-white hover:text-[#006fba] transition"
               onClick={() => ScrollNavigation({ name: 'Explore Services', href: '#services' })}
             >
               <FaInfoCircle className="text-lg" />

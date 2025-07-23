@@ -1,0 +1,22 @@
+{
+  "name": "الاسم",
+  "company_name": "اسم الشركة",
+  "email": "البريد الإلكتروني",
+  "phone_number": "رقم الهاتف",
+  "project_details": "تفاصيل المشروع (اختياري)",
+  "project_details_placeholder": "أخبرنا المزيد عن مشروعك...",
+  "submit_quote": "إرسال طلب عرض سعر",
+  "required_fields": "* الحقول المطلوبة. سنرد خلال 15 دقيقة",
+  "captcha_error": "يرجى إكمال اختبار CAPTCHA",
+  "captcha_expired": "انتهت صلاحية CAPTCHA، يرجى المحاولة مرة أخرى",
+  "navbar_home": "الرئيسية",
+  "navbar_about": "من نحن",
+  "navbar_services": "الخدمات",
+  "navbar_fleet": "الأسطول",
+  "navbar_quotes": "عروض الأسعار",
+  "navbar_faq": "الأسئلة الشائعة",
+  "navbar_contact": "اتصل بنا",
+  "navbar_language": "اللغة",
+  "navbar_language_arabic": "العربية",
+  "navbar_language_english": "الإنجليزية"
+}

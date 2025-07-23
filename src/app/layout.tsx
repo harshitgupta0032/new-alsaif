@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/component/Navbar";
 import { SiWhatsapp } from "react-icons/si";
 import { FaCircle } from "react-icons/fa";
 import Footer from "@/component/Footer";
 import { Toaster } from "react-hot-toast";
+import Navbar from "@/component/Navbar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,23 +32,23 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-neutral-50 min-h-screen flex flex-col`}
       >
-        <Toaster position="top-center" />
-        <header className="sticky top-0 z-49">
-          <Navbar />
-        </header>
-        <main className="flex-1 bg-white">
-          {children}
-        </main>
+          <Toaster position="top-center" />
+          <header className="sticky top-0 z-49">
+            <Navbar />
+          </header>
+          <main className="flex-1 bg-white">
+            {children}
+          </main>
 
-        <div className="fixed bottom-4 right-2 md:right-4 z-50  rounded-full flex items-center justify-center shadow-lg transition">
-          <div className="p-0 relative cursor-pointer">
-            <FaCircle className="text-red-600 size-2 md:size-3 absolute top-1 md:top-[-4px] right-[-2px]" />
-            <div className=" bg-green-400 p-[4px] md:p-2 flex justify-center items-center size-10 md:size-12 rounded-full">
-              <SiWhatsapp className="size-5 text-white" />
+          <div className="fixed bottom-4 right-2 md:right-4 z-50  rounded-full flex items-center justify-center shadow-lg transition">
+            <div className="p-0 relative cursor-pointer">
+              <FaCircle className="text-red-600 size-2 md:size-3 absolute top-1 md:top-[-4px] right-[-2px]" />
+              <div className=" bg-green-400 p-[4px] md:p-2 flex justify-center items-center size-10 md:size-13 rounded-full">
+                <SiWhatsapp className="size-6 text-white" />
+              </div>
             </div>
           </div>
-        </div>
-        <Footer />
+          <Footer />
       </body>
     </html>
   );

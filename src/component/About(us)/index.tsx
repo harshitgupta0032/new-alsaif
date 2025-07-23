@@ -18,7 +18,7 @@ const features = [
     icon: <FaTruck className="text-white text-xl" />,
     title: "Unrivaled Fleet",
     desc: "Over +5000 modern trucks, trailers, and tippers ready for any project.",
-    color: "bg-blue-500",
+    color: "bg-[#006fba]",
   },
   {
     icon: <IoDocumentTextOutline className="text-white text-xl" />,
@@ -51,11 +51,11 @@ const About = () => {
   return (
     <section
       id="about"
-      className="text-center text-neutral-800 bg-white px-4 md:px-10 py-16 "
+      className=" text-black py-5 w-11/12 md:w-5/6 "
     >
-      <div>
+      <div className="text-center">
         <h2 className="text-black text-2xl  sm:text-3xl md:text-4xl lg:text-[36px] 2xl:text-[40px] font-bold mb-4">
-          Why <span className="text-blue-500">ALSAIF Transportation?</span>
+          Why <span className="text-[#006fba]">ALSAIF Transportation?</span>
         </h2>
         <p className="text-gray-400 text-[10px] sm:text-[12px] md:text-[13px] lg:text-[15px] 2xl:text-[18px] pb-8 mb-5">
           Partner with us for unmatched reliability and tailored solutions.
@@ -76,45 +76,16 @@ const About = () => {
               <h3 className="text-lg 2xl:text-2xl font-bold mb-2">
                 {feature.title}
               </h3>
-              <p className="text-sm  text-gray-600 max-w-xs">{feature.desc}</p>
+              <p className="text-sm  text-gray-400 max-w-xs">{feature.desc}</p>
             </div>
           ))}
         </div>
       </div>
 
-      {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center max-w-7xl mx-auto">
-        <div className="text-left">
-          <h2 className="text-3xl md:text-4xl 2xl:text-5xl font-bold mb-4">
-            Modern Truck <span className="text-blue-400">Fleet</span>
-          </h2>
-          <p className="text-gray-600 mb-6 max-w-xl ">
-            Our modern truck fleet is equipped with advanced safety features and maintained to the highest standards.
-            Every vehicle undergoes regular inspections to ensure optimal performance and safety.
-          </p>
-
-          <ul className="space-y-4">
-            {fleetFeatures.map((feature, idx) => (
-              <li key={idx} className="flex items-center  text-gray-800">
-                <FaCheckCircle className="text-green-600 mr-3" />
-                <span>{feature}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="rounded-xl overflow-hidden shadow-md ">
-          <Image
-            src="/assets/truck (3).jpg" 
-            alt="Fleet Maintenance"
-            width={600}
-            height={400}
-            className="w-full h-auto md:h-[400px] object-cover"
-          />
-        </div>
-      </div> */}
-      <div className="w-full flex flex-col lg:flex-row items-start md:items-center gap-8 md:gap-12 py-10 px-4 md:px-8">
+      <div className="w-full flex flex-col lg:flex-row items-start md:items-center gap-8 md:gap-12 py-10">
         <div className="w-full lg:w-1/2 text-left">
           <h2 className="text-3xl md:text-4xl 2xl:text-5xl font-bold mb-4">
-            Modern Truck <span className="text-blue-500">Fleet</span>
+            Modern Truck <span className="text-[#006fba]">Fleet</span>
           </h2>
           <p className="text-gray-700 mb-6 max-w-xl leading-relaxed">
             Our modern truck fleet is equipped with advanced safety features and
@@ -142,36 +113,6 @@ const About = () => {
           />
         </div>
       </div>
-
-      {/* <div className="w-full flex">
-        <div className="text-left w-1/2">
-          <h2 className="text-3xl md:text-4xl 2xl:text-5xl font-bold mb-4">
-            Modern Truck <span className="text-blue-400">Fleet</span>
-          </h2>
-          <p className="text-gray-600 mb-6 max-w-xl ">
-            Our modern truck fleet is equipped with advanced safety features and maintained to the highest standards.
-            Every vehicle undergoes regular inspections to ensure optimal performance and safety.
-          </p>
-
-          <ul className="space-y-4">
-            {fleetFeatures.map((feature, idx) => (
-              <li key={idx} className="flex items-center  text-gray-800">
-                <FaCheckCircle className="text-green-600 mr-3" />
-                <span>{feature}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="rounded-xl w-1/2 overflow-hidden shadow-md ">
-          <Image
-            src="/assets/truck (3).jpg" 
-            alt="Fleet Maintenance"
-            width={600}
-            height={400}
-            className="w-full h-auto md:h-[400px] object-cover"
-          />
-        </div>
-      </div> */}
     </section>
   );
 };

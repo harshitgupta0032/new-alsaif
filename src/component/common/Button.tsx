@@ -7,7 +7,7 @@ type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
 const Button: React.FC<ButtonProps> = ({ children, type = 'button', className = '', ...props }) => (
   <button
     type={type}
-    className={`px-4 py-2 rounded bg-blue-500 text-white hover:bg-blue-600 cursor-pointer font-semibold  transition ${className}`}
+    className={`px-4 py-2 rounded bg-[#006fba] text-white hover:bg-[#2269baed] cursor-pointer font-semibold  transition ${className}`}
     {...props}
   >
     {children}

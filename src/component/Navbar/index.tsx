@@ -4,23 +4,28 @@ import { FaTruck } from 'react-icons/fa';
 import Button from '../common/Button';
 import { useScrollNavigation } from '@/hooks/UseScrollNavigaion';
 import QuotesModel from '../modals/QuotesModel';
+import { useTranslation } from 'react-i18next';
 
-const navLinks = [
+
+
+const Navbar = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
+  const drawerRef = useRef<HTMLDivElement>(null);
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
+
+
+  const ScrollNavigation = useScrollNavigation(setMenuOpen, setActiveSection);
+
+  const { t } = useTranslation('common');
+
+  const navLinks = [
   { name: 'Home', href: '#home' },
   { name: 'Services', href: '#services' },
   { name: 'Fleet', href: '#fleet' },
   { name: 'About', href: '#about' },
   { name: 'Contact', href: '#contact' },
 ];
-
-const Navbar = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('home');
-  const drawerRef = useRef<HTMLDivElement>(null);
-    const [isModalOpen, setIsModalOpen] = React.useState(false);
-  
-
-  const ScrollNavigation = useScrollNavigation(setMenuOpen, setActiveSection);
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -67,10 +72,10 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="bg-blue-50 shadow-md w-full top-0 left-0 border-b border-gray-200">
-      <div className="mx-auto flex flex-wrap items-center justify-between 2xl:justify-between px-4 sm:px-6 md:px-8 lg:px-12 w-full  py-2 md:py-3">
+    <nav className="bg-[#006fba] shadow-md  top-0 left-0 ">
+      <div className="mx-auto flex flex-wrap w-11/12 md:w-5/6 items-center justify-between h-[80px]">
         {/* Logo and Brand */}
-        <button
+        {/* <button
           type="button"
           className="flex items-center gap-2 bg-transparent border-none outline-none cursor-pointer"
           onClick={() => ScrollNavigation({ name: 'Home', href: '#home' })}
@@ -79,13 +84,19 @@ const Navbar = () => {
             <FaTruck className="text-lg sm:text-xl lg:text-2xl 2xl:text-3xl text-white" />
           </div>
           <div className="flex flex-col items-start justify-start">
-            <span className="font-bold text-base sm:text-lg lg:text-xl 2xl:text-2xl text-neutral-900">
+            <span className="font-bold text-lg text-yellow-200">
               Alsaif Transport
             </span>
-            <span className="text-xs sm:text-sm 2xl:text-[14px] text-neutral-500">
+            <span className="text-xs text-white">
               Premium truck service
             </span>
           </div>
+        </button> */}
+        <button
+          onClick={() => ScrollNavigation({ name: 'Home', href: '#home' })}
+          className='h-[42px] cursor-pointer'
+        >
+          <img src="./companylogo.webp" alt="Alsaif Transport Logo" className='h-full object-contain' />
         </button>
 
         {/* Hamburger Icon for Mobile */}
@@ -112,7 +123,7 @@ const Navbar = () => {
         {/* Navigation Drawer / Links */}
         <div
           ref={drawerRef}
-          className={`md:static md:flex items-center w-2/3 md:w-auto  transition-transform duration-500 z-50
+          className={`md:static md:flex items-center w-2/3 md:w-auto  transition-transform duration-500 z-50 text-black/70 md:text-white px-3 
             fixed top-0 right-0 h-full bg-white shadow-lg md:shadow-none md:bg-transparent
             ${menuOpen ? 'translate-x-0' : 'translate-x-full'}
             md:translate-x-0`}
@@ -120,31 +131,48 @@ const Navbar = () => {
           {/* Close button for mobile drawer */}
           <button
             aria-label="Close menu"
-            className="absolute top-4 right-4 md:hidden text-2xl text-gray-700 hover:text-blue-500 focus:outline-none"
+            className="absolute top-4 right-4 md:hidden text-2xl text-gray-700 hover:text-[#006fba] focus:outline-none"
             onClick={() => setMenuOpen(false)}
           >
             &times;
           </button>
 
-          <ul className="flex flex-col md:flex-row md:space-x-3 lg:space-x-5 items-start md:items-center mt-20 md:mt-0 ps-4 md:ps-0">
+
+          <ul className="flex flex-col md:flex-row items-start md:items-center gap-3 lg:gap-[27px] pt-10 ps-2 md:pt-0 md:ps-0">
             {navLinks.map((link) => (
-              <li key={link.name}>
+              <li key={link.name}
+                className="">
                 <button
                   type="button"
-                  className={`block px-2 py-2 font-[520] cursor-pointer text-sm sm:text-base 2xl:text-[21px] rounded transition-colors
-                    ${activeSection === link.href.replace('#', '') ? 'text-blue-500' : 'text-neutral-600 hover:text-blue-500'}`}
-                  onClick={() => ScrollNavigation(link)}
+                  className={`block font-semibold cursor-pointer text-sm sm:text-base md:text-[14px] lg:text-base rounded transition-colors
+                    ${activeSection === link.href.replace('#', '') ? 'text-blue-300' : ' hover:text-blue-200'}`}
+                  onClick={() => {
+                    if (link.name === 'Contact') {
+                      setIsModalOpen(true);
+                    } else {
+                      ScrollNavigation(link)
+                    }
+                  }}
                 >
                   {link.name}
                 </button>
               </li>
             ))}
+            <li className='border border-gray-300 rounded-md py-[6px] px-[13px] cursor-pointer'>
+              <select name="language" id="language" className="cursor-pointer bg-transparent outline-none">
+                <option value="english" className='text-blue-500'>En</option>
+                <option value="arabic" className='text-blue-500'>Ar</option>
+              </select>
+            </li>
             <li>
               <Button
                 type="button"
                 name=""
-                className="rounded-full text-sm 2xl:text-[17px] mt-4 md:mt-0 2xl:py-[7px]"
-                onClick={() => setIsModalOpen(true)}
+                className="rounded-full bg-blue-500 hover:bg-blue-600 text-sm md:text-[10px] lg:text-[14px] mt-4 md:mt-0  md:px-[5px] lg:px-[16px] "
+                onClick={() => {
+                  ScrollNavigation({ name: 'Get Quotes', href: '#get-quotes' });
+                  // setIsModalOpen(true);
+                }}
               >
                 Get Quotes
               </Button>

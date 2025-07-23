@@ -37,25 +37,22 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-black/80 text-white pt-12 pb-6 px-4 sm:px-10 md:px-32 ">
-      <div className="w-full mx-auto  grid grid-cols-1 sm:flex sm:justify-between sm:items-start sm:flex-wrap md:flex md:justify-between md:items-start 2xl:justify-center 2xl:gap-75 gap-10 pb-8 border-b-2 border-neutral-800">
+    <footer className="bg-[#006fba] text-white pt-12 pb-6 px-4 sm:px-10 md:px-32 ">
+      <div className="w-full mx-auto  grid grid-cols-1 sm:flex sm:justify-between sm:items-start sm:flex-wrap md:flex md:justify-between md:items-start  gap-10 pb-8 border-b-1 border-gray-400">
         {/* Brand & Socials */}
         <div>
-          <div className="flex items-center gap-3 mb-4">
-            <div className="bg-blue-600 p-2 rounded-xl">
-              <FaTruck className="text-2xl text-white" />
-            </div>
-            <div>
-              <span className="font-bold text-2xl">Alsaif Transport</span>
-              <div className="text-neutral-400 text-sm -mt-1">Premium Transportation Services</div>
-            </div>
-          </div>
-          <p className="text-neutral-300 text-sm 2xl:text-[17px] mb-4 mt-2 max-w-xs">
-            Al Saif Group specializes in providing top-tier transportation services, logistics solutions, and real estate for clients across Saudi Arabia and the Middle East. With a fleet of over +5000 Trucks, we deliver innovative and customized solutions to meet your business needs. Established in 1963, we are a trusted partner in logistics, warehousing, and transportation.
+          <button
+            onClick={() => ScrollNavigation({ name: 'Home', href: '#home' })}
+            className='h-[42px] cursor-pointer'
+          >
+            <img src="./companylogo.webp" alt="Alsaif Transport Logo" className='h-full object-contain' />
+          </button>
+          <p className="text-white/90 text-sm mb-4 mt-2 max-w-xs">
+            Al Saif Group specializes in top-tier transportation services across Saudi Arabia and the Middle East. With a fleet of 5000+ trucks, we’ve been a trusted logistics partner since 1963.
           </p>
           <div className="flex gap-3 mt-4">
             {socialMediaLinks.map((link, index) => (
-              <Link key={index} href={link.href} target='_blank' className="bg-neutral-800 hover:bg-blue-600 p-2 2xl:size-12 flex justify-center items-center rounded-full transition">
+              <Link key={index} href={link.href} target='_blank' className="bg-blue-500 hover:bg-blue-600 p-2 flex justify-center items-center rounded-full transition">
                 {link.icon}
               </Link>
             ))}
@@ -64,11 +61,11 @@ const Footer = () => {
         {/* Quick Links */}
         <div>
           <h4 className="font-bold text-lg mb-4">Quick Links</h4>
-          <ul className="space-y-2 text-neutral-300 ">
+          <ul className="space-y-1 text-white/90 ">
             {QuickLinks.map((link, index) => (
               <li key={index}>
                 <Link href={link.href}
-                  className="hover:text-white transition 2xl:text-lg"
+                  className="hover:text-white/70 transition text-md"
                   onClick={e => {
                     handleQuickLinkClick(link);
                     if (link.href.startsWith('#')) {
@@ -85,7 +82,7 @@ const Footer = () => {
         <div>
           <h4 className="font-bold text-lg mb-4">Contact Info</h4>
           {/* Contact Info */}
-          <ul className="space-y-3 text-neutral-300">
+          <ul className="space-y-2 text-white/90">
             {ContactInfo.map((info, index) => (
               <li key={index} className="flex items-center gap-3 2xl:text-lg">
                 {info.icon}
@@ -95,12 +92,14 @@ const Footer = () => {
           </ul>
         </div>
       </div>
-      <div className="max-w-7xl mx-auto pt-6 text-center text-neutral-400 text-sm 2xl:text-lg flex flex-col md:flex-row items-center justify-center gap-1">
+      <div className="max-w-7xl mx-auto pt-6 text-center text-white/90 text-sm flex flex-col md:flex-row items-center justify-between gap-1">
         <span> &copy; {new Date().getFullYear()} Al Saif Transportation, All Rights Reserved. </span>
-        <span className="mx-2 hidden md:block">|</span>
-        <Link href="/" className="hover:text-white transition">Privacy Policy</Link>
-        <span className="mx-2 hidden md:block">|</span>
-        <Link href="/" className="hover:text-white transition">Terms of Service</Link>
+        <div className="flex items-center gap-2">
+
+          <Link href="/" className="hover:text-white transition">Privacy Policy</Link>
+          <span className="mx-2 hidden md:block">|</span>
+          <Link href="/" className="hover:text-white transition">Terms of Service</Link>
+        </div>
       </div>
     </footer>
   );

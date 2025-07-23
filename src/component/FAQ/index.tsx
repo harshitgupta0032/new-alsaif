@@ -33,9 +33,9 @@ const FAQ = () => {
   };
 
   return (
-    <section className="min-h-screen py-5 md:p-13 px-4 md:px-0 bg-gray-50 flex flex-col justify-center items-center">
+    <section className="min-h-screen py-5 md:p-13 px-4 md:px-0 w-11/12 md:w-5/6  flex flex-col justify-center items-center">
       <h2 className=" text-black text-2xl  sm:text-3xl md:text-4xl lg:text-[36px] 2xl:text-[40px] font-bold text-center mb-3">
-        Frequently Asked <span className="text-blue-500">Questions</span>
+        Frequently Asked <span className="text-[#006fba]">Questions</span>
       </h2>
       <p className="text-gray-500 text-[10px] sm:text-[12px] md:text-[13px] lg:text-[15px] 2xl:text-[18px] mb-5">
         Get answers to common questions about our transportation services.

@@ -1,7 +1,6 @@
 'use client';
 import { FaTruck, FaShippingFast, FaWarehouse, FaCheckCircle } from 'react-icons/fa';
 import Button from '../common/Button';
-import { useScrollNavigation } from '@/hooks/UseScrollNavigaion';
 import QuotesModel from '../modals/QuotesModel';
 import React from 'react';
 
@@ -37,20 +36,19 @@ const services = [
 
 const Services = () => {
 
-  const ScrollNavigation = useScrollNavigation();
 
   const [isOpen, setIsOpen] = React.useState(false);
 
   return (
     <section
       id="services"
-      className="pt-10 flex justify-center items-center min-h-screen px-4 sm:px-6 md:px-8 lg:px-12 bg-white text-center"
+      className="pt-10 w-11/12 md:w-5/6 flex justify-center items-center min-h-screen  text-center"
     >
       <div className='text-center'>
         <h2 className="text-black text-2xl  sm:text-3xl md:text-4xl lg:text-[36px] 2xl:text-[40px] font-bold mb-4">
-          <span className="font-bold text-blue-500">Tailored Transportation Solutions for Every Industry</span>
+          <span className="font-bold text-[#006fba]">Tailored Transportation Solutions for Every Industry</span>
         </h2>
-        <p className="text-gray-600 pb-3 max-w-2xl mx-auto text-[10px] sm:text-[12px] md:text-[13px] lg:text-[15px] 2xl:text-[18px] mb-5 pb-8">
+        <p className="text-gray-600 max-w-2xl mx-auto text-[10px] sm:text-[12px] md:text-[13px] lg:text-[15px] 2xl:text-[18px] mb-5 pb-8">
           From logistics to construction, our fleet delivers efficiency and reliability.
         </p>
 

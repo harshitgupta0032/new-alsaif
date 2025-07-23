@@ -1,13 +1,9 @@
 
-// Fix for missing types for react-simple-captcha
-declare module 'react-simple-captcha';
 
 import { Formik, Form } from 'formik';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { IoClose } from 'react-icons/io5';
-import { FiRefreshCw } from 'react-icons/fi';
 import Modal from 'react-modal';
-import { loadCaptchaEnginge, validateCaptcha, LoadCanvasTemplate } from 'react-simple-captcha';
 import Input from '../common/Input';
 import Textarea from '../common/Textarea';
 import Button from '../common/Button';
@@ -48,24 +44,17 @@ const QuotesModel = ({ isOpen, onRequestClose }: QuotesModelProps) => {
             initialValues={contactInitialValues}
             validationSchema={contactValidationSchema}
             onSubmit={(values, actions) => {
-
-              if (!captchaToken) {
-                actions.setFieldError('captcha', 'Please complete the CAPTCHA');
-                actions.setSubmitting(false);
-                return;
-              }
-
-              // Form is valid
               console.log('Contact form submitted:', values);
               toast.success('Form submitted successfully!');
               actions.resetForm();
-              loadCaptchaEnginge(6);
+              recaptchaRef.current?.reset(); 
+              onRequestClose();
               actions.setSubmitting(false);
-              onRequestClose(); // Optionally close modal on success
             }}
           >
+
             {({ isSubmitting, setFieldValue, setFieldError, values, errors, touched }) => (
-              <Form className="flex flex-col gap-[2px]">
+              <Form className="flex flex-col gap-[4px]">
                 <Input
                   name="fullName"
                   type="text"
@@ -115,19 +104,19 @@ const QuotesModel = ({ isOpen, onRequestClose }: QuotesModelProps) => {
                       ref={recaptchaRef}
                       sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
                       onChange={(token) => {
-                        setCaptchaToken(token);
+                        setFieldValue('captcha', token);
                         setFieldError('captcha', '');
                       }}
                       onExpired={() => {
-                        setCaptchaToken(null);
+                        setFieldValue('captcha', '');
                         setFieldError('captcha', 'CAPTCHA expired, please try again');
                       }}
                     />
                   </div>
 
                   {/* Error message */}
-                  {errors.captcha && (
-                    <p className="text-red-500 text-[12px] md:text-[11px] 2xl:text-[14px] mt-[2px] lg:mt-[7px]">
+                  {errors.captcha && touched.captcha && (
+                    <p className="text-red-500 text-[13px] ps-2 mt-[2px] lg:mt-[7px]">
                       {errors.captcha}
                     </p>
                   )}
@@ -137,10 +126,11 @@ const QuotesModel = ({ isOpen, onRequestClose }: QuotesModelProps) => {
                 <Button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded  md:mt-2"
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded md:mt-2"
                 >
                   Submit
                 </Button>
+
               </Form>
             )}
           </Formik>
