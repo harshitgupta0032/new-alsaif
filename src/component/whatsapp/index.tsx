@@ -8,9 +8,9 @@ const Whatsapp = () => {
 
   const handleClick = async () => {
     if (navigator.userAgent.includes("WhatsApp")) {
-      window.open(`whatsapp://send?phone=7525011203`);
+      window.open(`whatsapp://send?phone=+966596003333`);
     } else {
-      window.open("https://web.whatsapp.com/send?phone=7525011203", "_blank");
+      window.open("https://web.whatsapp.com/send?phone=+966596003333", "_blank");
     }
   };
 

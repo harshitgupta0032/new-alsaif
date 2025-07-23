@@ -17,7 +17,7 @@ const services = [
       "Rent modern, heavy-duty trucks for logistics, manufacturing, or material transport, customized to your business needs. ",
     icon: <FaTruck className="text-xl lg:text-2xl text-white" />,
     bgColor: "bg-blue-100",
-    iconBg: "bg-blue-500",
+    iconBg: "bg-[#006fba]",
     points: [
       "Diverse truck models for all cargo types. ",
       "Flexible rental terms (short or long-term). ",
@@ -60,24 +60,25 @@ const Services = () => {
   return (
     <section
       id="services"
-      className="pt-10 flex justify-center items-center px-4 sm:px-6  min-h-screen md:px-8 lg:px-12 bg-white text-center"
+      className="py-10 flex justify-center items-center  min-h-screen bg-white text-center"
     >
-      <div className="text-center">
+      <div className="text-center w-11/12 md:w-5/6">
         <h2 className="text-black text-2xl  sm:text-3xl md:text-4xl lg:text-[36px] 2xl:text-[40px] font-bold mb-4">
-          <span className="font-bold text-blue-500">
+          <span className="font-bold text-[#006fba]">
             Tailored Transportation Solutions for Every Industry
           </span>
         </h2>
-        <p className="text-gray-600 max-w-2xl mx-auto text-[10px] sm:text-[12px] md:text-[13px] lg:text-[15px] 2xl:text-[18px] mb-5 pb-8">
+        <p className="text-gray-400 max-w-2xl mx-auto text-sm md:text-lg mb-5 pb-8">
           From logistics to construction, our fleet delivers efficiency and
           reliability.
         </p>
 
-        <div className=" flex justify-center items-start flex-wrap sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        <div className=" flex justify-center items-start flex-wrap sm:grid md:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-8">
+          {/* <div className=" flex flex-wrap  gap-4 lg:gap-6"> */}
           {services.map((service) => (
             <div
               key={service.title}
-              className={`group rounded-2xl shadow-sm p-5 sm:p-6 text-left flex flex-col gap-3 h-auto min-h-[300px] sm:min-h-[390px] lg:min-h-[450px] 2xl:h-[550px]  mx-auto sm:w-[270px] md:w-auto transition hover:shadow-2xl ${service.bgColor} relative`}
+              className={`group rounded-2xl shadow-sm p-5 sm:p-6 text-left flex flex-col gap-3 h-auto md:h-[480px] md:min-w-auto  sm:w-full  transition hover:shadow-2xl ${service.bgColor} relative`}
             >
               <div className="flex items-center justify-start gap-3 mb-1 ">
                 <div
@@ -85,29 +86,31 @@ const Services = () => {
                 >
                   {service.icon}
                 </div>
-                <h3 className="text-base sm:text-lg lg:text-2xl 2xl:text-3xl font-semibold text-neutral-800 ">
+                <h3 className="text-lg lg:text-2xl font-semibold text-neutral-800 ">
                   {service.title}
                 </h3>
               </div>
-              <div className="ps-3 mt-2">
-                <p className="text-xs -tracking-tighter sm:text-sm lg:text-base 2xl:text-lg text-black/50 mb-4 2xl:mb-6">
+              <div className=" mt-2">
+                <p className="-tracking-tighter text-sm lg:text-base  text-black/50 mb-4 2xl:mb-6">
                   {service.description}
                 </p>
-                <ul className="space-y-1">
+                <ul className="space-y-3">
                   {service.points.map((point) => (
                     <li
                       key={point}
-                      className="flex items-center gap-2 text-xs sm:text-sm lg:text-[15px] 2xl:text-lg text-black/40 -tracking-tight"
+                      className="flex items-center gap-2 text-sm lg:text-base text-black/40 -tracking-tight"
                     >
-                      <FaCheckCircle className="text-green-500 w-4 h-5 mr-2 flex-shrink-0" />
-                      {point}
+                      <FaCheckCircle className="text-green-500 w-4 h-5 mr-2  flex-shrink-0" />
+                      <h1>{point}</h1>
                     </li>
                   ))}
                 </ul>
               </div>
               <div className="mt-auto flex justify-center items-center">
                 <Button
-                  onClick={() => setIsOpen(true)}
+                  onClick={() =>
+                    ScrollNavigation({ name: "Contact", href: "#contact" })
+                  }
                   className="rounded-xl mt-4  w-full   2xl:text-lg"
                 >
                   Get Quotes Now

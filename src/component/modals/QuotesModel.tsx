@@ -1,41 +1,72 @@
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import Modal from "react-modal";
+import Textarea from "../common/Textarea";
+import Button from "../common/Button";
+import { QuotesModelProps } from "@/schema/contactUsSchema";
+import ReCAPTCHA from "react-google-recaptcha";
+import { useState } from "react";
+import { IoClose } from "react-icons/io5";
 
-// Fix for missing types for react-simple-captcha
-declare module 'react-simple-captcha';
+type FormData = {
+  name: string;
+  email: string;
+  phone: string;
+  message: string;
+};
 
-import { Formik, Form } from 'formik';
-import React, { useEffect } from 'react';
-import { IoClose } from 'react-icons/io5';
-import { FiRefreshCw } from 'react-icons/fi';
-import Modal from 'react-modal';
-import { loadCaptchaEnginge, validateCaptcha, LoadCanvasTemplate } from 'react-simple-captcha';
-import Input from '../common/Input';
-import Textarea from '../common/Textarea';
-import Button from '../common/Button';
-import toast from 'react-hot-toast';
-import { contactInitialValues, contactValidationSchema, QuotesModelProps } from '@/schema/contactUsSchema';
-
-
+const schema = yup.object().shape({
+  name: yup.string().required("Name is required"),
+  email: yup.string().email("Invalid email").required("Email is required"),
+  phone: yup
+    .string()
+    .required("Phone number is required")
+    .matches(/^\d{13}$/, "Phone number must be exactly 13 digits"),
+  message: yup.string().required("Message is required"),
+});
 
 const QuotesModel = ({ isOpen, onRequestClose }: QuotesModelProps) => {
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
 
-  const handleAfterOpen = () => {
-    setTimeout(() => {
-      loadCaptchaEnginge(6);
-    }, 0);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+
+  const onSubmit = (data: FormData) => {
+    if (!captchaToken) {
+      alert("Please complete the reCAPTCHA");
+      return;
+    }
+
+    console.log("Form Data:", data);
+    console.log("Captcha Token:", captchaToken);
+
+    // submit your form (e.g., to API here)
+    reset();
+    onRequestClose();
   };
+  const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
+
+  if (!siteKey) {
+    throw new Error("Missing NEXT_PUBLIC_RECAPTCHA_SITE_KEY in environment");
+  }
 
   return (
     <Modal
       isOpen={isOpen}
       onRequestClose={onRequestClose}
-      onAfterOpen={handleAfterOpen}
       contentLabel="Quotes Model"
       bodyOpenClassName="body-no-scroll"
       className="max-w-lg mx-auto px-6 pb-4 pt-2 w-[600px] bg-gray-200 rounded-lg shadow-lg z-[110]"
       overlayClassName="fixed inset-0 bg-black/30 flex items-center justify-center z-[100]"
       ariaHideApp={false}
     >
-      <div className="flex flex-col justify-between items-center">
         <div className="flex items-start justify-end w-full">
           <button
             onClick={onRequestClose}
@@ -44,112 +75,87 @@ const QuotesModel = ({ isOpen, onRequestClose }: QuotesModelProps) => {
             <IoClose className="size-7" />
           </button>
         </div>
+      <div className="w-full">
+        <h2 className="text-2xl py-4 text-[#006fba] font-bold text-center mb-2">
+          Contact Us
+        </h2>
 
-        <div className="w-full">
-          <h2 className="text-2xl text-black font-bold text-center mb-2">Contact Us</h2>
-          <Formik
-            initialValues={contactInitialValues}
-            validationSchema={contactValidationSchema}
-            onSubmit={(values, actions) => {
-              if (!validateCaptcha(values.captchaInput)) {
-                actions.setFieldError('captchaInput', 'CAPTCHA did not match. Try again.');
-                loadCaptchaEnginge(6);
-                actions.setSubmitting(false);
-                return;
-              }
-
-              console.log('Contact form submitted:', values);
-              toast.success('Form submitted successfully!');
-              actions.resetForm();
-              loadCaptchaEnginge(6);
-              actions.setSubmitting(false);
-              onRequestClose(); 
-            }}
-          >
-            {({ isSubmitting, setFieldValue, values, errors, touched }) => (
-              <Form className="flex flex-col gap-2">
-                <Input
-                label='Name'
-                  name="fullName"
-                  type="text"
-                  placeholder="Full Name*"
-                  onChange={(e) => setFieldValue('fullName', e.target.value)}
-                  value={values.fullName}
-                  error={errors.fullName}
-                  touched={touched.fullName}
-                />
-                <Input
-                  name="email"
-                  label='Email'
-                  type="email"
-                  placeholder="Email*"
-                  onChange={(e) => setFieldValue('email', e.target.value)}
-                  value={values.email}
-                  error={errors.email}
-                  touched={touched.email}
-                />
-                <Input
-                  label='Phone Number'
-                  name="phone"
-                  type="text"
-                  placeholder="Phone*"
-                  onChange={(e) => setFieldValue('phone', e.target.value)}
-                  value={values.phone}
-                  error={errors.phone}
-                  touched={touched.phone}
-                />
-                <div className=''>
-                  <Textarea
-                    label='Message'
-                    name="message"
-                    placeholder="Message*"
-                    rows={4}
-                    onChange={(e) => setFieldValue('message', e.target.value)}
-                    value={values.message}
-                    error={errors.message}
-                    touched={touched.message}
-                  />
-                </div>
-
-                <div className="flex flex-col md:flex-row">
-                  <div className="flex items-start ">
-                    <div className='flex items-center justify-center py-[1px] px-[1px] overflow-hidden bg-white rounded-lg'>
-                      <LoadCanvasTemplate reloadText=" " />
-                    </div>
-                    <button
-                      type="button"
-                      onClick={() => loadCaptchaEnginge(6)}
-                      className="p-2 rounded-full cursor-pointer hover:bg-gray-300 transition"
-                      aria-label="Reload CAPTCHA"
-                    >
-                      <FiRefreshCw className="size-4 text-gray-700" />
-                    </button>
-                  </div>
-                  <div className="flex-1 mt-2 md:mt-0"> 
-                    <Input
-                      name="captchaInput"
-                      type="text"
-                      placeholder="Enter The Captcha*"
-                      onChange={(e) => setFieldValue('captchaInput', e.target.value)}
-                      value={values.captchaInput}
-                      error={errors.captchaInput}
-                      touched={touched.captchaInput}
-                      className='h-[40px]'
-                    />
-                  </div>
-                </div>
-
-                <Button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded mt-2"
-                >
-                  Submit
-                </Button>
-              </Form>
+        <form
+          className="flex flex-col gap-4 mt-8"
+          onSubmit={handleSubmit(onSubmit)}
+        >
+          <div className="flex flex-col w-full">
+            <input
+              type="text"
+              placeholder="Enter Your Name"
+              {...register("name")}
+              className="border p-3 py-7 text-black placeholder-gray-400 bg-white/80 rounded-lg text-sm border-gray-300 w-full h-8"
+            />
+            {errors.name && (
+              <span className="text-red-600 text-sm">
+                {errors.name.message}
+              </span>
             )}
-          </Formik>
-        </div>
+          </div>
+
+          <div className="flex flex-col w-full">
+            <input
+              type="email"
+              placeholder="Enter Your Email"
+              {...register("email")}
+              className="border p-3 py-7 text-black placeholder-gray-400 bg-white/80 rounded-lg text-sm border-gray-300 w-full h-8"
+            />
+            {errors.email && (
+              <span className="text-red-600 text-sm">
+                {errors.email.message}
+              </span>
+            )}
+          </div>
+
+          <div className="flex flex-col w-full">
+            <input
+              type="number"
+              placeholder="Enter Your Phone Number"
+              {...register("phone")}
+              className="border p-3 py-7 text-black placeholder-gray-400 bg-white/80 rounded-lg text-sm border-gray-300 w-full h-8"
+            />
+            {errors.phone && (
+              <span className="text-red-600 text-sm">
+                {errors.phone.message}
+              </span>
+            )}
+          </div>
+
+          <div className="flex flex-col w-full">
+            <Textarea
+              {...register("message")}
+              name="message"
+              className="rounded-lg"
+              placeholder="Message*"
+              rows={4}
+            />
+            {errors.message && (
+              <span className="text-red-600 text-sm">
+                {errors.message.message}
+              </span>
+            )}
+          </div>
+
+          <div className="mt-2">
+            <ReCAPTCHA
+              sitekey={siteKey}
+              onChange={(token) => setCaptchaToken(token)}
+              onExpired={() => setCaptchaToken(null)}
+            />
+          </div>
+
+          <Button
+            type="submit"
+            className="w-full bg-[#006fba] hover:bg-blue-700 text-white font-bold py-2 rounded mt-2"
+          >
+            Submit
+          </Button>
+        </form>
       </div>
     </Modal>
   );

@@ -1,162 +1,182 @@
-import React from "react";
-declare module "react-simple-captcha";
-import {
-  loadCaptchaEnginge,
-  validateCaptcha,
-  LoadCanvasTemplate,
-} from "react-simple-captcha";
-import { Formik, Form } from "formik";
+import { useRef, useState } from "react";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
+import ReCAPTCHA from "react-google-recaptcha";
 import { FaPaperPlane } from "react-icons/fa";
-import {
-  FormValues,
-  initialValues,
-  validationSchema,
-} from "@/schema/quotesFormSchema";
-import Input from "../common/Input";
-import Textarea from "../common/Textarea";
 import Button from "../common/Button";
-import { FiRefreshCw } from "react-icons/fi";
+import { FormikHelpers } from "formik";
+type QuoteFormValues = {
+  name: string;
+  companyname: string;
+  email: string;
+  number: string;
+  details: string;
+};
 
 const QuoteForm = () => {
-  const onSubmit = (
-    values: FormValues,
-    actions: {
-      setSubmitting: (isSubmitting: boolean) => void;
-      resetForm: () => void;
-    }
+  const recaptchaRef = useRef<ReCAPTCHA | null>(null);
+  const [captchaVerified, setCaptchaVerified] = useState(false);
+
+  const validationSchema = Yup.object({
+    name: Yup.string().required("Name is required"),
+    companyname: Yup.string().required("Company Name is required"),
+    email: Yup.string().email("Invalid email").required("Email is required"),
+    number: Yup.string()
+      .matches(/^\d{13}$/, "Phone number must be exactly 13 digits")
+      .required("Phone number is required"),
+    details: Yup.string(),
+  });
+
+  const handleSubmit = (
+    values: QuoteFormValues,
+    { resetForm }: FormikHelpers<QuoteFormValues>
   ) => {
-    console.log("Form submitted:", values);
-    actions.setSubmitting(false);
-    actions.resetForm();
+    if (!captchaVerified) {
+      alert("Please complete the CAPTCHA.");
+      return;
+    }
+
+    console.log("Submitted Data:", values);
+    alert("Quote request submitted successfully!");
+    resetForm();
+    recaptchaRef?.current?.reset();
+    setCaptchaVerified(false);
   };
-  const handleAfterOpen = () => {
-    setTimeout(() => {
-      loadCaptchaEnginge(6);
-    }, 0);
-  };
+
+  const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
+
+  if (!siteKey) {
+    throw new Error("Missing NEXT_PUBLIC_RECAPTCHA_SITE_KEY in environment");
+  }
 
   return (
-    <Formik<FormValues>
-      initialValues={initialValues}
-      validationSchema={validationSchema}
-      onSubmit={onSubmit}
-    >
-      {({ isSubmitting, setFieldValue, values, errors, touched }) => (
-        <Form className="bg-gray-100 grid grid-cols-1 gap-4 md:grid-cols-2 text-black placeholder:text-black/80 px-6 py-6 rounded-xl shadow-lg lg:min-h-[600px] w-full lg:w-[900px] mx-auto">
-          <div className="">
-            <Input
-              label="Name"
-              id="name"
-              type="text"
-              placeholder="Enter your name"
-              onChange={(e) => setFieldValue("name", e.target.value)}
-              value={values.name}
-              error={errors.name}
-              touched={touched.name}
-              className="w-full 2xl:text-[17px] p 2xl:py-3"
-            />
-          </div>
+    <div className="bg-gray-100 text-black p-6 flex flex-col rounded-xl shadow-lg lg:min-h-[600px] w-full">
+      <Formik
+        initialValues={{
+          name: "",
+          companyname: "",
+          email: "",
+          number: "",
+          details: "",
+        }}
+        validationSchema={validationSchema}
+        onSubmit={handleSubmit}
+      >
+        {() => (
+          <Form className="flex flex-col gap-3">
+            <div className="flex flex-col sm:flex-row gap-5">
+              <div className="flex flex-col w-full">
+                <label htmlFor="name" className="text-gray-500 p-2">
+                  Name
+                </label>
+                <Field
+                  name="name"
+                  type="text"
+                  placeholder="Enter Your Name"
+                  className="border p-3 py-6 placeholder-gray-400 bg-white/80 rounded-lg text-sm border-gray-300 w-full h-8"
+                />
+                <ErrorMessage
+                  name="name"
+                  component="div"
+                  className="text-red-500 text-sm px-2"
+                />
+              </div>
+              <div className="flex flex-col w-full">
+                <label htmlFor="companyname" className="text-gray-500 p-2">
+                  Company Name
+                </label>
+                <Field
+                  name="companyname"
+                  type="text"
+                  placeholder="Enter Your Company Name"
+                  className="border p-3 py-6 placeholder-gray-400 bg-white/80 rounded-lg text-sm border-gray-300 w-full h-8"
+                />
+                <ErrorMessage
+                  name="companyname"
+                  component="div"
+                  className="text-red-500 text-sm px-2"
+                />
+              </div>
+            </div>
 
-          <div className="">
-            <Input
-              label="Company Name"
-              id="companyName"
-              type="text"
-              placeholder="Enter your company name"
-              onChange={(e) => setFieldValue("companyName", e.target.value)}
-              value={values.companyName}
-              error={errors.companyName}
-              touched={touched.companyName}
-              className="w-full  2xl:text-[17px] p 2xl:py-3"
-            />
-          </div>
+            <div className="flex flex-col sm:flex-row gap-5">
+              <div className="flex flex-col w-full">
+                <label htmlFor="email" className="text-gray-500 p-2">
+                  Email
+                </label>
+                <Field
+                  name="email"
+                  type="email"
+                  placeholder="Enter Your Email"
+                  className="border p-3 py-6 placeholder-gray-400 bg-white/80 rounded-lg text-sm border-gray-300 w-full h-8"
+                />
+                <ErrorMessage
+                  name="email"
+                  component="div"
+                  className="text-red-500 text-sm px-2"
+                />
+              </div>
+              <div className="flex flex-col w-full">
+                <label htmlFor="number" className="text-gray-500 p-2">
+                  Phone Number
+                </label>
+                <Field
+                  name="number"
+                  type="number"
+                  placeholder="Enter Your Phone Number"
+                  className="border p-3 py-6 placeholder-gray-400 bg-white/80 rounded-lg text-sm border-gray-300 w-full h-8"
+                />
+                <ErrorMessage
+                  name="number"
+                  component="div"
+                  className="text-red-500 text-sm px-2"
+                />
+              </div>
+            </div>
 
-          <div className="">
-            <Input
-              id="email"
-              label="Email"
-              type="email"
-              placeholder="Enter your email"
-              onChange={(e) => setFieldValue("email", e.target.value)}
-              value={values.email}
-              error={errors.email}
-              touched={touched.email}
-              className="w-full  2xl:text-[17px] p 2xl:py-3"
-            />
-          </div>
+            <div className="flex flex-col w-full">
+              <label htmlFor="details" className="text-gray-500 p-2">
+                Project Details (optional)
+              </label>
+              <Field
+                as="textarea"
+                name="details"
+                placeholder="Tell us more about your project..."
+                className="border p-3 py-6 placeholder-gray-400 bg-white/80 rounded-lg border-gray-300 w-full min-h-[150px]"
+              />
+            </div>
 
-          <div className="">
-            <Input
-              id="phoneNumber"
-              label="Phone Number"
-              type="tel"
-              placeholder="Enter your phone number"
-              onChange={(e) => setFieldValue("phoneNumber", e.target.value)}
-              value={values.phoneNumber}
-              error={errors.phoneNumber}
-              touched={touched.phoneNumber}
-              className="w-full  2xl:text-[17px] p 2xl:py-3"
-            />
-          </div>
+            <div className="flex justify-between gap-3 flex-wrap items-center">
+              <ReCAPTCHA
+                sitekey={siteKey}
+                ref={recaptchaRef}
+                onChange={(token) => setCaptchaVerified(!!token)}
+                onExpired={() => setCaptchaVerified(false)}
+              />
+              <ul className="flex gap-2 flex-col">
+                <li className="cursor-pointer text-gray-600 px-3">
+                  Email: social.media@alsaifexpress.com
+                </li>
+                <li className="cursor-pointer text-gray-600 px-3">
+                  Tel: +966596003333
+                </li>
+              </ul>
+            </div>
 
-          <div className="col-span-1 md:col-span-2">
-            <Textarea
-              label="Project Details (optional)"
-              id="projectDetails"
-              rows={4}
-              placeholder="Tell us more about your project..."
-              onChange={(e) => setFieldValue("projectDetails", e.target.value)}
-              value={values.projectDetails || ""}
-              error={errors.projectDetails}
-              touched={touched.projectDetails}
-              className="w-full  2xl:text-[17px] px-3 py-2 2xl:py-3 min-h-[130px] 2xl:min-h-[150px]"
-            />
-          </div>
-
-          {/* <div className="flex flex-col md:flex-row mt-2">
-                            <div className="flex items-start ">
-                              <div className='flex items-center justify-center py-[1px] px-[1px] overflow-hidden bg-white rounded-lg'>
-                                <LoadCanvasTemplate reloadText=" " />
-                              </div>
-                              <button
-                                type="button"
-                                onClick={() => loadCaptchaEnginge(6)}
-                                className="p-2 rounded-full cursor-pointer hover:bg-gray-300 transition"
-                                aria-label="Reload CAPTCHA"
-                              >
-                                <FiRefreshCw className="size-4 text-gray-700" />
-                              </button>
-                            </div>
-                            <div className="flex-1 mt-2 md:mt-0"> 
-                              <Input
-                                name="captchaInput"
-                                type="text"
-                                placeholder="Enter CAPTCHA*"
-                                onChange={(e) => setFieldValue('captchaInput', e.target.value)}
-                                // value={values.captchaInput}
-                                // error={errors.captchaInput}
-                                // touched={touched.captchaInput}
-                                className='h-[40px]'
-                              />
-                            </div>
-                          </div> */}
-
-          <div className="text-center col-span-1 md:col-span-2">
-            <Button
-              type="submit"
-              disabled={isSubmitting}
-              className="inline-flex items-center cursor-pointer gap-2 text-white text-[15px] 2xl:text-xl font-semibold px-6 py-2 2xl:py-3 2xl:my-2 rounded-full shadow transition duration-300 ease-in-out disabled:opacity-50"
-            >
-              <FaPaperPlane />
-              Submit Quote Request
-            </Button>
-            <p className="mt-3  2xl:text-[17px] text-gray-600">
-              * Required fields
-            </p>
-          </div>
-        </Form>
-      )}
-    </Formik>
+            <div className="text-center mt-2 col-span-1 md:col-span-2">
+              <Button
+                type="submit"
+                // disabled={!captchaVerified}
+                className="inline-flex items-center cursor-pointer gap-2 text-white text-[15px] 2xl:text-xl font-semibold px-6 py-2 2xl:py-3 2xl:my-2 rounded-full shadow transition duration-300 ease-in-out disabled:opacity-50"
+              >
+                <FaPaperPlane />
+                Submit Quote Request
+              </Button>
+            </div>
+          </Form>
+        )}
+      </Formik>
+    </div>
   );
 };
 
