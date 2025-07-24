@@ -2,7 +2,9 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Button from '../common/Button';
 import { useScrollNavigation } from '@/hooks/UseScrollNavigaion';
-import QuotesModel from '../modals/QuotesModel';
+import QuotesModel from '../modals/ContactUsModal';
+import LanguageSwitcher from '../LanguageSwitcher';
+import { useTranslation } from 'react-i18next';
 
 
 
@@ -15,14 +17,16 @@ const Navbar = () => {
 
   const ScrollNavigation = useScrollNavigation(setMenuOpen, setActiveSection);
 
+  const { t } = useTranslation('common');
+
 
   const navLinks = [
-  { name: 'Home', href: '#home' },
-  { name: 'Services', href: '#services' },
-  { name: 'Fleet', href: '#fleet' },
-  { name: 'About', href: '#about' },
-  { name: 'Contact', href: '#contact' },
-];
+    { name: t('navbar_home'), href: '#home' },
+    { name: t('navbar_services'), href: '#services' },
+    { name: t('navbar_fleet'), href: '#fleet' },
+    { name: t('navbar_about'), href: '#about' },
+    { name: t('navbar_contact'), href: '#contact' },
+  ];
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -72,23 +76,6 @@ const Navbar = () => {
     <nav className="bg-[#006fba] shadow-md  top-0 left-0 ">
       <div className="mx-auto flex flex-wrap w-11/12 md:w-5/6 items-center justify-between h-[80px]">
         {/* Logo and Brand */}
-        {/* <button
-          type="button"
-          className="flex items-center gap-2 bg-transparent border-none outline-none cursor-pointer"
-          onClick={() => ScrollNavigation({ name: 'Home', href: '#home' })}
-        >
-          <div className="bg-blue-500 p-2 sm:p-3 rounded-xl">
-            <FaTruck className="text-lg sm:text-xl lg:text-2xl 2xl:text-3xl text-white" />
-          </div>
-          <div className="flex flex-col items-start justify-start">
-            <span className="font-bold text-lg text-yellow-200">
-              Alsaif Transport
-            </span>
-            <span className="text-xs text-white">
-              Premium truck service
-            </span>
-          </div>
-        </button> */}
         <button
           onClick={() => ScrollNavigation({ name: 'Home', href: '#home' })}
           className='h-[42px] cursor-pointer'
@@ -155,11 +142,8 @@ const Navbar = () => {
                 </button>
               </li>
             ))}
-            <li className='border border-gray-300 rounded-md py-[6px] px-[13px] cursor-pointer'>
-              <select name="language" id="language" className="cursor-pointer bg-transparent outline-none">
-                <option value="english" className='text-blue-500'>En</option>
-                <option value="arabic" className='text-blue-500'>Ar</option>
-              </select>
+            <li>
+              <LanguageSwitcher />
             </li>
             <li>
               <Button
@@ -171,7 +155,7 @@ const Navbar = () => {
                   // setIsModalOpen(true);
                 }}
               >
-                Get Quotes
+                {t('get_quotes_button')}
               </Button>
             </li>
           </ul>

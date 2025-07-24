@@ -1,49 +1,54 @@
 "use client";
+import { t } from "i18next";
 import Image from "next/image";
+import { useTranslation } from "react-i18next";
 
-const fleetData = [
+
+
+const Fleet = () => {
+  
+  const {t} = useTranslation('common');
+
+  const fleetData = [
   {
-    title: "Delivery Trucks",
-    description: "Perfect for cargo and logistics operations",
+    title: t("our_premium_fleet_service_1_title"),
+    description: t("our_premium_fleet_service_1_description"),
     image: "/assets/truck (6).jpg",
   },
   {
-    title: "Freight Trucks",
-    description: "Heavy-duty transportation solutions",
+    title: t("our_premium_fleet_service_2_title"),
+    description: t("our_premium_fleet_service_2_description"),
     image: "/assets/truck (1).jpg",
   },
   {
-    title: "Medium Trucks",
-    description: "Versatile mid-size transportation",
+    title: t("our_premium_fleet_service_3_title"),
+    description: t("our_premium_fleet_service_3_description"),
     image: "/assets/truck (7).jpg",
   },
   {
-    title: "Commercial Trucks",
-    description: "Professional fleet vehicles",
+    title: t("our_premium_fleet_service_4_title"),
+    description: t("our_premium_fleet_service_4_description"),
     image: "/assets/truck (8).jpg",
   },
 ];
 
-const stats = [
-  { value: "150", label: "Vehicles in Fleet", color: "text-blue-600" },
-  { value: "99%", label: "Uptime Percentage", color: "text-green-600" },
-  { value: "5000", label: "Happy Customers", color: "text-purple-600" },
-  { value: "24h", label: "Hour Support", color: "text-red-600" },
-];
-
-const Fleet = () => {
+  const stats = [
+    { value: "150", label: t('our_premium_fleet_vehicles_in_fleet_text'), color: "text-blue-600" },
+    { value: "99%", label: t('our_premium_fleet_uptime_percentage_text'), color: "text-green-600" },
+    { value: "5000", label: t('our_premium_fleet_happy_customers_text'), color: "text-purple-600" },
+    { value: "24h", label: t('our_premium_fleet_hour_support_text'), color: "text-red-600" },
+  ];
   return (
     <section
       id="fleet"
-      className="py-13 w-full bg-[#f9fbff] text-center w-11/12 md:w-5/6"
+      className="py-13 bg-[#f9fbff] text-center w-11/12 md:w-5/6"
     >
 
-      <h2 className="text-black text-2xl  sm:text-3xl md:text-4xl lg:text-[36px] 2xl:text-[40px] font-bold  mb-4">
-        Our <span className="text-[#006fba]">Premium Fleet</span>
+      <h2 className="text-[#006fba] text-2xl  sm:text-3xl md:text-4xl lg:text-[36px] 2xl:text-[40px] font-bold  mb-4">
+        {t('our_premium_fleet_title')}
       </h2>
       <p className="text-gray-400 text-[10px] sm:text-[12px] md:text-[13px] lg:text-[15px] 2xl:text-[18px] pb-8 mb-5">
-        Modern, well-maintained vehicles equipped with latest safety features
-        and comfort amenities for your peace of mind.
+        {t('our_premium_fleet_description')}
       </p>
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
         {fleetData.map((item, idx) => (

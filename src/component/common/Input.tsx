@@ -37,6 +37,7 @@
 
 
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
@@ -47,6 +48,7 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 const Input: React.FC<InputProps> = ({ label, error, touched, ...props }) => {
   const hasError = touched && error;
   const id = props.id || props.name;
+  const {i18n, t} = useTranslation('common')
 
   const containerMinHeight = label ? 'min-h-[105px]' : 'min-h-[60px] 2xl:min-h-[80px]';
 
@@ -60,6 +62,7 @@ const Input: React.FC<InputProps> = ({ label, error, touched, ...props }) => {
       )}
       <input
         id={id}
+        dir={i18n.language === 'ar' ? 'rtl' : 'ltr'}
         {...props}
         className={`w-full bg-white text-xs 2xl:text-[17px] px-2  h-[50px] 2xl:py-3 text-black/80 placeholder:text-black/40 placeholder:text-[14px] placeholder:font-450 rounded-md focus:outline-none focus:ring-2 ${
           hasError

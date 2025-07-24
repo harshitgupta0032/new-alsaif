@@ -6,6 +6,8 @@ import { FaCircle } from "react-icons/fa";
 import Footer from "@/component/Footer";
 import { Toaster } from "react-hot-toast";
 import Navbar from "@/component/Navbar";
+import I18nClientProvider from './I18nClientProvider';
+import React from "react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,6 +34,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-neutral-50 min-h-screen flex flex-col`}
       >
+        <I18nClientProvider>
           <Toaster position="top-center" />
           <header className="sticky top-0 z-49">
             <Navbar />
@@ -49,6 +52,7 @@ export default function RootLayout({
             </div>
           </div>
           <Footer />
+        </I18nClientProvider>
       </body>
     </html>
   );

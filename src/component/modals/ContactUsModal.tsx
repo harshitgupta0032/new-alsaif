@@ -1,28 +1,27 @@
 
 
 import { Formik, Form } from 'formik';
-import React, { useRef, useState } from 'react';
+import React, { useRef} from 'react';
 import { IoClose } from 'react-icons/io5';
 import Modal from 'react-modal';
 import Input from '../common/Input';
 import Textarea from '../common/Textarea';
 import Button from '../common/Button';
 import toast from 'react-hot-toast';
-import { contactInitialValues, contactValidationSchema, QuotesModelProps } from '@/schema/contactUsSchema';
+import { contactInitialValues, contactValidationSchema, QuotesModelProps } from '@/component/schema/contactUsSchema';
 import ReCAPTCHA from 'react-google-recaptcha';
 
 
 
-const QuotesModel = ({ isOpen, onRequestClose }: QuotesModelProps) => {
+const ContactUsModal = ({ isOpen, onRequestClose }: QuotesModelProps) => {
 
-  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
   const recaptchaRef = useRef<ReCAPTCHA>(null);
 
   return (
     <Modal
       isOpen={isOpen}
       onRequestClose={onRequestClose}
-      contentLabel="Quotes Model"
+      contentLabel="Contact Us"
       bodyOpenClassName="body-no-scroll"
       className="max-w-lg mx-auto px-6 pb-4 pt-2 w-[300px] lg:w-[400px] 2xl:w-[450px] bg-gray-200 rounded-lg shadow-lg z-[110]"
       overlayClassName="fixed inset-0 bg-black/30 flex items-center justify-center z-[100]"
@@ -140,4 +139,4 @@ const QuotesModel = ({ isOpen, onRequestClose }: QuotesModelProps) => {
   );
 };
 
-export default QuotesModel;
+export default ContactUsModal;
