@@ -6,7 +6,7 @@ import Footer from "@/component/Footer";
 import { Toaster } from "react-hot-toast";
 import Whatsapp from "@/component/whatsapp";
 import I18nProvider from "@/component/LanguageSwitcher/I18nProvider";
-
+import Providers from "@/utils";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -32,19 +32,18 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-neutral-50 min-h-screen flex flex-col`}
       >
-        <I18nProvider>
+        <Providers>
+          <I18nProvider>
+            <Toaster position="top-center" />
+            <header className="sticky top-0 z-49">
+              <Navbar />
+            </header>
+            <main className="flex-1 bg-white">{children}</main>
 
-        <Toaster position="top-center" />
-        <header className="sticky top-0 z-49">
-          <Navbar />
-        </header>
-        <main className="flex-1 bg-white">
-          {children}
-        </main>
-
-        <Whatsapp/>
-        <Footer />
-        </I18nProvider>
+            <Whatsapp />
+            <Footer />
+          </I18nProvider>
+        </Providers>
       </body>
     </html>
   );

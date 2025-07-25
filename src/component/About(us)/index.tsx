@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import { useTranslation } from "react-i18next";
 import { BsShieldCheck } from "react-icons/bs";
 import {
   FaBolt,
@@ -35,7 +36,7 @@ const features = [
   {
     icon: <FaCrown className="text-white text-xl" />,
     title: "Industry Leader",
-    desc: "Trusted by top construction, logistics, and industrial firms across Saudi Arabia & GCC.",
+    desc: "Trusted by top construction, logistics, and industrial firms across Saudi Arabia & GCC",
     color: "bg-amber-500",
   },
 ];
@@ -48,6 +49,7 @@ const fleetFeatures = [
 ];
 
 const About = () => {
+  const {t} = useTranslation();
   return (
     <section
       id="about"
@@ -56,10 +58,10 @@ const About = () => {
       <div className="w-11/12 md:w-5/6">
         <div>
           <h2 className="text-black text-2xl  sm:text-3xl md:text-4xl lg:text-[36px] 2xl:text-[40px] font-bold mb-4">
-            Why <span className="text-[#006fba]">ALSAIF Transportation?</span>
+             <span className="text-[#006fba]">{t("Why ALSAIF Transportation?")}</span>
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto text-sm md:text-lg mb-5 pb-8">
-            Partner with us for unmatched reliability and tailored solutions.
+            {t("Partner with us for unmatched reliability and tailored solutions.")}
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-16 ">
             {features.map((feature, index) => (
@@ -77,10 +79,10 @@ const About = () => {
                   </span>
                 </div>
                 <h3 className="text-lg 2xl:text-2xl font-bold mb-2">
-                  {feature.title}
+                  {t(feature.title)}
                 </h3>
                 <p className="text-sm  text-gray-400 max-w-xs">
-                  {feature.desc}
+                  {t(feature.desc)}
                 </p>
               </div>
             ))}
@@ -90,19 +92,17 @@ const About = () => {
         <div className="w-full flex flex-col lg:flex-row items-start md:items-center gap-8 md:gap-12 py-10">
           <div className="w-full lg:w-1/2 text-left">
             <h2 className="text-3xl md:text-4xl 2xl:text-5xl font-bold mb-4">
-              Modern Truck <span className="text-[#006fba]">Fleet</span>
+              {t("Modern Truck")} <span className="text-[#006fba]">{t("Fleet")}</span>
             </h2>
             <p className="text-gray-500 mb-6 max-w-xl leading-relaxed">
-              Our modern truck fleet is equipped with advanced safety features
-              and maintained to the highest standards. Every vehicle undergoes
-              regular inspections to ensure optimal performance and safety.
+              {t("Our modern truck fleet is equipped with advanced safety features and maintained to the highest standards. Every vehicle undergoes regular inspections to ensure optimal performance and safety.")}
             </p>
 
             <ul className="space-y-4">
               {fleetFeatures.map((feature, idx) => (
                 <li key={idx} className="flex items-center text-gray-500">
                   <FaCheckCircle className="text-green-600 mr-3" />
-                  <span>{feature}</span>
+                  <span>{t(feature)}</span>
                 </li>
               ))}
             </ul>

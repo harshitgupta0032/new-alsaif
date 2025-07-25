@@ -3,6 +3,7 @@ import { useScrollNavigation } from "@/hooks/UseScrollNavigaion";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import {
   FaFacebookF,
   FaTwitter,
@@ -11,7 +12,6 @@ import {
   FaEnvelope,
   FaMapMarkerAlt,
   FaClock,
-  FaTruck,
   FaYoutube,
 } from "react-icons/fa";
 
@@ -20,26 +20,26 @@ const QuickLinks = [
   { name: "Services", href: "#services" },
   { name: "Fleet", href: "#fleet" },
   { name: "About", href: "#about" },
-  { name: "Get Quote", href: "#get-quotes" },
+  { name: "Get Quotes", href: "#contact" },
 ];
 
 const ContactInfo = [
   {
-    icon: <FaPhoneAlt className="text-blue-400 w-5 h-5 flex-shrink-0" />,
+    icon: <FaPhoneAlt className="text-white w-5 h-5 flex-shrink-0" />,
     text: "+966596003333",
     href: "tel:+966596003333",
   },
   {
-    icon: <FaEnvelope className="text-blue-400 w-5 h-5 flex-shrink-0" />,
+    icon: <FaEnvelope className="text-white w-5 h-5 flex-shrink-0" />,
     text: "social.media@alsaifexpress.com",
     href: "mailto:social.media@alsaifexpress.com",
   },
   {
-    icon: <FaMapMarkerAlt className="text-blue-400 w-5 h-5 flex-shrink-0" />,
-    text: "Saudi Arabia",
+    icon: <FaMapMarkerAlt className="text-white w-5 h-5 flex-shrink-0" />,
+    text: "Dammam, KSA: Al Khaldia Al Shamalia",
   },
   {
-    icon: <FaClock className="text-blue-400 w-5 h-5 flex-shrink-0" />,
+    icon: <FaClock className="text-white w-5 h-5 flex-shrink-0" />,
     text: "24/7 Support",
   },
 ];
@@ -65,6 +65,7 @@ const socialMediaLinks = [
 
 const Footer = () => {
   const ScrollNavigation = useScrollNavigation();
+  const {t} = useTranslation();
 
   const handleQuickLinkClick = (link: { name: string; href: string }) => {
     ScrollNavigation({ name: link.name, href: link.href });
@@ -85,9 +86,7 @@ const Footer = () => {
               />
             </div>
             <p className="text-white text-sm 2xl:text-[17px] mb-4 mt-2">
-              Al Saif Group specializes in top-tier transportation services
-              across Saudi Arabia and the Middle East. With a fleet of 5000+
-              trucks, we’ve been a trusted logistics partner since 1963.
+              {t("Al Saif Group specializes in top-tier transportation services across Saudi Arabia and the Middle East. With a fleet of 5000+ trucks, we’ve been a trusted logistics partner since 1963.")}
             </p>
             <div className="flex gap-3 mt-4">
               {socialMediaLinks.map((link, index) => (
@@ -104,7 +103,7 @@ const Footer = () => {
           </div>
 
           <div>
-            <h4 className="font-bold text-lg mb-4">Quick Links</h4>
+            <h4 className="font-bold text-lg mb-4">{t("Quick Links")}</h4>
             <ul className="space-y-2 text-white">
               {QuickLinks.map((link, index) => (
                 <li key={index}>
@@ -118,7 +117,7 @@ const Footer = () => {
                       }
                     }}
                   >
-                    {link.name}
+                    {t(link.name)}
                   </Link>
                 </li>
               ))}
@@ -126,7 +125,7 @@ const Footer = () => {
           </div>
 
           <div>
-            <h4 className="font-bold text-lg mb-4">Contact Info</h4>
+            <h4 className="font-bold text-lg mb-4">{t("Contact Info")}</h4>
             <ul className="space-y-3 text-white">
               {/* {ContactInfo.map((info, index) => (
                 <li key={index} className="flex items-center gap-3 2xl:text-lg">
@@ -151,7 +150,7 @@ const Footer = () => {
                       {info.text}
                     </a>
                   ) : (
-                    <span>{info.text}</span>
+                    <span>{t(info.text)}</span>
                   )}
                 </li>
               ))}
@@ -161,17 +160,16 @@ const Footer = () => {
 
         <div className="max-w-7xl mx-auto pt-6 text-center md:text-left text-white text-sm 2xl:text-lg flex flex-col md:flex-row items-center justify-between gap-2">
           <span>
-            © {new Date().getFullYear()} Al Saif Transportation. All Rights
-            Reserved.
+            © {new Date().getFullYear()} {t("Al Saif Transportation, All Rights Reserved.")}
           </span>
           <div className="flex gap-4">
-            <Link href="/" className="hover:text-white transition">
-              Privacy Policy
-            </Link>
+            <div className="hover:text-white transition">
+              {t("Privacy Policy")}
+            </div>
             <span className="hidden md:block">|</span>
-            <Link href="/" className="hover:text-white transition">
-              Terms of Service
-            </Link>
+            <div className="hover:text-white transition">
+              {t("Terms of Service")}
+            </div>
           </div>
         </div>
       </div>

@@ -75,7 +75,7 @@ const Navbar = () => {
       <div className="flex justify-between h-20 items-center w-11/12 md:w-5/6">
         <button
           type="button"
-          className="flex items-center h-12 justify-center gap-2 lg:gap-3 bg-transparent border-none outline-none cursor-pointer"
+          className="flex items-center h-12 w-[130px] justify-center gap-2 lg:gap-3 bg-transparent border-none outline-none cursor-pointer"
           onClick={() => ScrollNavigation({ name: "Home", href: "#home" })}
         >
           <Image
@@ -83,7 +83,7 @@ const Navbar = () => {
             alt=""
             width={700}
             height={500}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-contain"
           />
         </button>
 

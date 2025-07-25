@@ -10,6 +10,7 @@ import Button from '../common/Button';
 import Image from 'next/image';
 import { useScrollNavigation } from '@/hooks/UseScrollNavigaion';
 import { useTranslation } from 'react-i18next';
+import i18n from 'i18next';
 
 const images = [
   '/assets/truck1.jpg',
@@ -28,12 +29,14 @@ const Hero = () => {
     >
       <div className="absolute inset-0 z-0 w-full h-full">
         <Swiper
+         key={i18n.language}
           modules={[Autoplay]}
           autoplay={{ delay: 4000, disableOnInteraction: false }}
           loop={true}
           allowSlidePrev={false}
           allowTouchMove={false}
           className="w-full h-full"
+          dir={i18n.language === 'ar' ? 'rtl' : 'ltr'}
           speed={1200}
         >
           {images.map((src, idx) => (

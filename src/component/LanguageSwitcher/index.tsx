@@ -10,11 +10,11 @@ const LanguageSwitcher = () => {
   };
 
   return (
-    <div className="language-switcher px-3 py-2 cursor-pointer border rounded-md shadow-sm focus:outline-none focus:ring-2  focus:border-blue-500 text-sm">
+    <div className="language-switcher px-2 py-2 cursor-pointer border rounded-md shadow-sm focus:outline-none focus:ring-2  focus:border-blue-500 text-sm">
       <select
         value={i18n.language}
         onChange={(e) => changeLanguage(e.target.value as "en" | "ar")}
-        className=" text-white "
+        className=" text-black px-3 outline-none cursor-pointer md:text-white "
       >
         <option className="cursor-pointer text-blue-400" value="en">
           EN

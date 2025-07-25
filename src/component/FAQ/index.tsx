@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { IoIosArrowDown } from "react-icons/io";
 
 const faqs = [
@@ -27,7 +28,7 @@ const faqs = [
 
 const FAQ = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
-
+  const {t} = useTranslation();
   const handleToggle = (idx: number) => {
     setOpenIndex(openIndex === idx ? null : idx);
   };
@@ -36,10 +37,10 @@ const FAQ = () => {
     <section className="min-h-screen py-5  bg-gray-50 flex justify-center items-center">
       <div className=" flex justify-center items-center flex-col w-11/12 md:w-5/6">
         <h2 className="text-black text-2xl  sm:text-3xl md:text-4xl lg:text-[36px] 2xl:text-[40px] font-bold mb-4">
-          Frequently Asked <span className="text-[#006fba]">Questions</span>
+          {t("Frequently Asked")} <span className="text-[#006fba]">{t("Questions")}</span>
         </h2>
         <p className="text-gray-400 max-w-2xl mx-auto text-sm md:text-lg mb-5 pb-8">
-          Get answers to common questions about our transportation services.
+          {t("Get answers to common questions about our transportation services.")}
         </p>
         <div className="w-full space-y-5 2xl:space-y-8 ">
           {faqs.map((faq, idx) => (
@@ -53,7 +54,7 @@ const FAQ = () => {
                 aria-expanded={openIndex === idx}
               >
                 <span className=" font-[550] md:font-semibold text-md md:text-lg  text-neutral-900">
-                  {faq.question}
+                  {t(faq.question)}
                 </span>
                 <span
                   className={`ml-4 text-xl text-neutral-500 transition-transform duration-800 ${
@@ -70,7 +71,7 @@ const FAQ = () => {
                     : "max-h-0 opacity-0"
                 }`}
               >
-                {faq.answer}
+                {t(faq.answer)}
               </div>
             </div>
           ))}

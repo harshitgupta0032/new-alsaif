@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import { useTranslation } from "react-i18next";
 
 const fleetData = [
   {
@@ -32,6 +33,7 @@ const stats = [
 ];
 
 const Fleet = () => {
+  const {t} = useTranslation();
   return (
     <section
       id="fleet"
@@ -39,11 +41,10 @@ const Fleet = () => {
     >
       <div className="w-11/12 md:w-5/6">
         <h2 className="text-black text-2xl  sm:text-3xl md:text-4xl lg:text-[36px] 2xl:text-[40px] font-bold mb-4">
-          Our <span className="text-[#006fba]">Premium Fleet</span>
+           <span className="text-[#006fba]"> {t("Our Premium Fleet")}</span>
         </h2>
         <p className="text-gray-400 max-w-2xl mx-auto text-sm md:text-lg mb-5 pb-8">
-          Modern, well-maintained vehicles equipped with latest safety features
-          and comfort amenities for your peace of mind.
+          {t("Modern, well-maintained vehicles equipped with latest safety features and comfort amenities for your peace of mind.")}
         </p>
         <div className="grid  w-full sm:grid-cols-2  xl:grid-cols-4 gap-6 md:gap-8">
           {fleetData.map((item, idx) => (
@@ -59,9 +60,9 @@ const Fleet = () => {
                 </div>
                 <div className="p-4 2xl:px-3 gap-2 text-left flex flex-col">
                   <h3 className="text-lg 2xl:text-2xl font-semibold text-neutral-900">
-                    {item.title}
+                    {t(item.title)}
                   </h3>
-                  <p className="text-sm  text-gray-400">{item.description}</p>
+                  <p className="text-sm  text-gray-400">{t(item.description)}</p>
                 </div>
               </div>
               <div className="bg-white rounded-2xl shadow py-6 text-center flex flex-col items-center justify-center mb-5 w-full sm:w-[300px] md:w-auto">
@@ -71,7 +72,7 @@ const Fleet = () => {
                   {stats[idx].value}
                 </h3>
                 <p className="text-sm 2xl:text-lg text-gray-500 mt-2">
-                  {stats[idx].label}
+                  {t(stats[idx].label)}
                 </p>
               </div>
             </div>
