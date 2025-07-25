@@ -8,12 +8,13 @@
   "get_quotes_button": "Get Quote",
   "explore_services_button": "Explore Services",
   "navbar_home": "Home",
-  "navbar_about": "About Us",
+  "navbar_about": "About",
   "navbar_services": "Services",
   "navbar_fleet": "Fleet",
   "navbar_quotes": "Quotes",
   "navbar_faq": "FAQ",
   "navbar_contact": "Contact",
+
   "service_title": "Tailored Transportation Solutions for Every Industry",
   "service_description": "From logistics to construction, our fleet delivers efficiency and reliability.",
   "service_add_truck_rental_title": "Truck Rentals",
@@ -32,6 +33,7 @@
   "service_add_tipper_rental_point_2": "Fully maintained for project efficiency. ",
   "service_add_tipper_rental_point_3": "Expert support for seamless operations.",
   "service_get_quotes_now_button": "Get Quote Now",
+
   "our_premium_fleet_title": "Our Premium Fleet",
   "our_premium_fleet_description": "Modern, well-maintained vehicles equipped with latest safety features and comfort amenities for your peace of mind.",
   "our_premium_fleet_service_1_title": "Delivery Trucks",
@@ -50,6 +52,7 @@
   "our_premium_fleet_happy_customers_count": "5000",
   "our_premium_fleet_hour_support_text": "Hour Support",
   "our_premium_fleet_hout_support_count": "24h",
+
   "about_title": "Why ALSAIF Transportation?",
   "about_description": "Partner with us for unmatched reliability and tailored solutions.",
   "about_features_1_title": "Unrivaled Fleet",
@@ -60,42 +63,58 @@
   "about_features_3_description": "Regular maintenance and 24/7 support to keep your operations running smoothly.",
   "about_features_4_title": "Industry Leader",
   "about_features_4_description": "Trusted by top construction, logistics, and industrial firms across Saudi Arabia & GCC",
+  
   "modern_truck_fleet_title": "Modern Truck Fleet",
   "modern_truck_fleet_description": "Our modern truck fleet is equipped with advanced safety features and maintained to the highest standards. Every vehicle undergoes regular inspections to ensure optimal performance and safety.",
   "modern_truck_fleet_feature_1": "Latest Safety Technology",
   "modern_truck_fleet_feature_2": "GPS Tracking & Monitoring",
   "modern_truck_fleet_feature_3": "Regular Maintenance Schedule",
   "modern_truck_fleet_feature_4": "Fuel-Efficient Engines",
+
   "start_your_project_with_Al_Saif_title": "Start Your Project with Al Saif Today",
   "start_your_project_with_Al_Saif_description": "Request a customized quote and let our fleet drive your success.",
-  "start_your_project_with_Al_Saif_form_name": "Name",
-  "start_your_project_with_Al_Saif_form_name_placeholder": "Enter your name",
-  "start_your_project_with_Al_Saif_form_name_required_error_message": "Name is required",
-  "start_your_project_with_Al_Saif_form_company_name": "Company name",
-  "start_your_project_with_Al_Saif_form_company_name_placeholder": "Enter you company name",
-  "start_your_project_with_Al_Saif_form_company_name_required_error_message": "Comapany name is required",
-  "start_your_project_with_Al_Saif_form_email": "Email",
-  "start_your_project_with_Al_Saif_form_email_placeholder": "Enter your email",
-  "start_your_project_with_Al_Saif_form_email_required_error_message": "Emial is required",
-  "start_your_project_with_Al_Saif_form_email_valid_email_error_message": "Please enter valid email",
-  "start_your_project_with_Al_Saif_form_phone": "Phone",
-  "start_your_project_with_Al_Saif_form_phone_placeholder": "+9876545675643",
-  "start_your_project_with_Al_Saif_form_phone_required_error_message": "Phone is required",
-  "start_your_project_with_Al_Saif_form_phone_length_error_message": "Phone must be 10 digits",
-  "start_your_project_with_Al_Saif_form_project_details": "Project Details",
-  "start_your_project_with_Al_Saif_form_project_details_placeholder": "Tell us more about your project...",
-  "start_your_project_with_Al_Saif_form_captcha_required_error_message": "Captcha is required",
-  "start_your_project_with_Al_Saif_form_captcha_expired_error_message": "Captcha expired, please try again",
-  "start_your_project_with_Al_Saif_form_submit_button": "Submit Quote Request",
-  "start_your_project_with_Al_Saif_form_response_time": "* Required fields. we will response within 15 minutes",
-  "start_your_project_with_Al_Saif_contact_us_title": "Contact Us",
-  "start_your_project_with_Al_Saif_contact_us_description": "We're open for any suggestion or just to have a chat.",
-  "start_your_project_with_Al_Saif_contact_us_address_text": "Address",
-  "start_your_project_with_Al_Saif_contact_us_address": "Dammam, KSA: Al Khaldia Al Shamalia",
-  "start_your_project_with_Al_Saif_contact_us_email_text": "Email",
-  "start_your_project_with_Al_Saif_contact_us_email": "social.media@alsaifexpress.com",
-  "start_your_project_with_Al_Saif_contact_us_phone_text": "Phone",
-  "start_your_project_with_Al_Saif_contact_us_phone": "+966596003333",
+  
+  "Al_Saif_form_name": "Name",
+  "Al_Saif_form_name_placeholder": "Enter your name",
+  "Al_Saif_form_name_required_error_message": "Name is required",
+
+  "Al_Saif_form_company_name": "Company name",
+  "Al_Saif_form_company_name_placeholder": "Enter you company name",
+  "Al_Saif_form_company_name_required_error_message": "Comapany name is required",
+  
+  "Al_Saif_form_email": "Email",
+  "Al_Saif_form_email_placeholder": "Enter your email",
+  "Al_Saif_form_email_required_error_message": "Emial is required",
+  "Al_Saif_form_email_valid_email_error_message": "Please enter valid email",
+  
+  "Al_Saif_form_phone": "Phone",
+  "Al_Saif_form_phone_placeholder": "+9876545675643",
+  "Al_Saif_form_phone_required_error_message": "Phone is required",
+  "Al_Saif_form_phone_length_error_message": "Phone must be 10 digits",
+  
+  "Al_Saif_form_project_details": "Project Details",
+  "Al_Saif_form_project_details_placeholder": "Tell us more about your project...",
+  "Al_Saif_form_project_details_required_error_message": "Project details are required",
+
+  "Al_Saif_form_message": "Message",
+  "Al_Saif_form_message_placeholder": "Enter your message",
+  "Al_Saif_form_message_required_error_message": "Message is required",
+
+  "Al_Saif_form_captcha": "Captcha",
+  "Al_Saif_form_captcha_required_error_message": "Captcha is required",
+  "Al_Saif_form_captcha_expired_error_message": "Captcha expired, please try again",
+  
+  "Al_Saif_form_submit_button": "Submit",
+  "Al_Saif_form_response_time": "* Required fields. we will response within 15 minutes",
+  
+  "Al_Saif_contact_us_title": "Contact Us",
+
+  "Al_Saif_contact_us_description": "We're open for any suggestion or just to have a chat.",
+  "Al_Saif_contact_us_address_text": "Address",
+  "Al_Saif_contact_us_address": "Dammam, KSA: Al Khaldia Al Shamalia",
+  "Al_Saif_contact_us_email_text": "Email",
+  "Al_Saif_contact_us_email": "social.media@alsaifexpress.com",
+
 
   "faq_title": "Frequently Asked Questions",
   "faq_description": "Get answers to common questions about our transportation services.",
@@ -115,5 +134,10 @@
   "quick_links": "Quick Links",
   "contact_info": "Contact Info",
   "saudi_arabia": "Saudi Arabia",
-  "support": "24/7 Support"
+  "support": "24/7 Support",
+
+  "contact_us_form_title": "Contact Us",
+
+  "thank_you_message": "Thank you! Your message has been sent.",
+  "thank_you_contact_message":"We will contact you as soon as possible"
 }

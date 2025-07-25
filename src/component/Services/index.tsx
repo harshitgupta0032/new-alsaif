@@ -56,13 +56,13 @@ const Services = () => {
   return (
     <section
       id="services"
-      className="pt-10 w-11/12 md:w-5/6 flex justify-center items-center min-h-screen  text-center"
+      className="py-10  flex justify-center items-center min-h-screen  text-center"
     >
-      <div className='text-center'>
+      <div className='text-center w-11/12 md:w-5/6'>
         <h2 className="text-[#006fba] text-2xl  sm:text-3xl md:text-4xl lg:text-[36px] 2xl:text-[40px] font-bold mb-4">
           {t('service_title')}
         </h2>
-        <p className="text-gray-600 max-w-2xl mx-auto text-[10px] sm:text-[12px] md:text-[13px] lg:text-[15px] 2xl:text-[18px] mb-5 pb-8">
+        <p className="text-gray-600 max-w-2xl mx-auto text-[14px]  md:text-[18px] lg:text-[20px] 2xl:text-[22px] mb-5 pb-8">
           {t('service_description')}
         </p>
 
@@ -109,12 +109,12 @@ const Services = () => {
             </div>
           ))}
         </div>
-      </div>
-
       <QuotesModel
         isOpen={isOpen}
         onRequestClose={() => setIsOpen(false)}
       />
+      </div>
+
     </section>
   );
 };

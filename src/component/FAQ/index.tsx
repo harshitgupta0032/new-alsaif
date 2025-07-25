@@ -32,15 +32,16 @@ const FAQ = () => {
   };
 
   return (
-    <section className="min-h-screen py-5 md:p-13 px-4 md:px-0 w-11/12 md:w-5/6  flex flex-col justify-center items-center">
+    <section className="min-h-screen py-5  md:p-13 px-4 md:px-0   flex flex-col items-center justify-center">
+      <div className="w-11/12 md:w-5/6 text-center">
       <h2 className=" text-[#006fba] text-2xl  sm:text-3xl md:text-4xl lg:text-[36px] 2xl:text-[40px] font-bold text-center mb-3">
         {t('faq_title')}
       </h2>
-      <p className="text-gray-500 text-[10px] sm:text-[12px] md:text-[13px] lg:text-[15px] 2xl:text-[18px] mb-5">
+      <p className="text-gray-500 text-[14px]  md:text-[18px] lg:text-[20px] 2xl:text-[22px] mb-5">
         {t('faq_description')}
       </p>
       
-      <div className="w-full max-w-3xl 2xl:max-w-7xl space-y-5 2xl:space-y-8 ">
+      <div className="w-full space-y-5 2xl:space-y-8 ">
         {faqs.map((faq, idx) => (
           <div
             key={faq.question}
@@ -65,6 +66,7 @@ const FAQ = () => {
             </div>
           </div>
         ))}
+      </div>
       </div>
     </section>
   );

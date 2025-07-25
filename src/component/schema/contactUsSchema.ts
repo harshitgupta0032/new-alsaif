@@ -4,19 +4,25 @@ export interface QuotesModelProps {
   isOpen: boolean;
   onRequestClose: () => void;
 }
-
+export interface ContactFormValues {
+  name: string;
+  email: string;
+  phone: string;
+  message: string;
+  captcha: string;
+}
 export const contactInitialValues = {
-  fullName: '',
+  name: '',
   email: '',
   phone: '',
   message: '',
   captcha: '',
 };
 
-export const contactValidationSchema = Yup.object({
-  fullName: Yup.string().min(2).required('Full Name is required'),
-  email: Yup.string().email('Invalid email').required('Email is required'),
-  phone: Yup.string().min(8).required('Phone is required'),
-  message: Yup.string().required('Message is required'),
-  captcha: Yup.string().required('CAPTCHA is required'),
+export const contactUsValidationSchema = (t: (key: string) => string) => Yup.object({
+  name: Yup.string().min(2).required(t('Al_Saif_form_name_required_error_message')),
+  email: Yup.string().email(t('Al_Saif_form_email_invalid_error_message')).required(t('Al_Saif_form_email_required_error_message')),
+  phone: Yup.string().min(8).required(t('Al_Saif_form_phone_required_error_message')),
+  message: Yup.string().required(t('Al_Saif_form_message_required_error_message')),
+  captcha: Yup.string().required(t('Al_Saif_form_captcha_required_error_message')),
 });

@@ -13,7 +13,8 @@
   "navbar_fleet": "الأسطول",
   "navbar_quotes": "عروض الأسعار",
   "navbar_faq": "الأسئلة الشائعة",
-  "navbar_contact": "اتصل بنا",
+  "navbar_contact": "عن",
+
   "navbar_language": "اللغة",
   "navbar_language_arabic": "العربية",
   "navbar_language_english": "الإنجليزية",
@@ -69,36 +70,52 @@
   "modern_truck_fleet_feature_2": "تتبع ومراقبة نظام تحديد المواقع العالمي (GPS)",
   "modern_truck_fleet_feature_3": "جدول الصيانة الدورية",
   "modern_truck_fleet_feature_4": "محركات موفرة للوقود",
+
   "start_your_project_with_Al_Saif_title": "ابدأ مشروعك مع السيف اليوم",
   "start_your_project_with_Al_Saif_description": "اطلب عرض أسعار مخصص ودع أسطولنا يقود نجاحك.",
-  "start_your_project_with_Al_Saif_form_name": "الاسم",
-  "start_your_project_with_Al_Saif_form_name_placeholder": "أدخل اسمك",
-  "start_your_project_with_Al_Saif_form_name_required_error_message": "الاسم مطلوب",
-  "start_your_project_with_Al_Saif_form_company_name": "اسم الشركة",
-  "start_your_project_with_Al_Saif_form_company_name_placeholder": "أدخل اسم شركتك",
-  "start_your_project_with_Al_Saif_form_company_name_required_error_message": "اسم الشركة مطلوب",
-  "start_your_project_with_Al_Saif_form_email": "البريد الإلكتروني",
-  "start_your_project_with_Al_Saif_form_email_placeholder": "أدخل بريدك الإلكتروني",
-  "start_your_project_with_Al_Saif_form_email_required_error_message": "البريد الإلكتروني مطلوب",
-  "start_your_project_with_Al_Saif_form_email_valid_email_error_message": "عنوان البريد الإلكتروني غير صالح",
-  "start_your_project_with_Al_Saif_form_phone": "رقم الهاتف",
-  "start_your_project_with_Al_Saif_form_phone_placeholder": "أدخل هاتفك",
-  "start_your_project_with_Al_Saif_form_phone_required_error_message": "رقم الهاتف مطلوب",
-  "start_your_project_with_Al_Saif_form_phone_length_error_message": "رقم الهاتف يجب أن يكون 10 أرقام",
-  "start_your_project_with_Al_Saif_form_project_details": "تفاصيل المشروع",
-  "start_your_project_with_Al_Saif_form_project_details_placeholder": "أخبرنا المزيد عن مشروعك...",
-  "start_your_project_with_Al_Saif_form_captcha_error_message": "كلمة التحقق مطلوبة",
-  "start_your_project_with_Al_Saif_form_captcha_expired_error_message": "انتهت صلاحية كلمة التحقق، يرجى المحاولة مرة أخرى",
-  "start_your_project_with_Al_Saif_form_submit_button": "إرسال طلب عرض الأسعار",
-  "start_your_project_with_Al_Saif_form_response_time": "* الحقول المطلوبة. سوف نقوم بالرد خلال 15 دقيقة",
-  "start_your_project_with_Al_Saif_contact_us_title": "اتصل بنا",
-  "start_your_project_with_Al_Saif_contact_us_description": "نحن منفتحون على أي اقتراح أو لمجرد الدردشة.",
-  "start_your_project_with_Al_Saif_contact_us_address_text": "عنوان",
-  "start_your_project_with_Al_Saif_contact_us_address": "الدمام، المملكة العربية السعودية: الخالدية الشمالية",
-  "start_your_project_with_Al_Saif_contact_us_email_text": "البريد الإلكتروني",
-  "start_your_project_with_Al_Saif_contact_us_email": "social.media@alsaifexpress.com",
-  "start_your_project_with_Al_Saif_contact_us_phone_text": "رقم الهاتف",
-  "start_your_project_with_Al_Saif_contact_us_phone": "+966596003333",
+
+  "Al_Saif_form_name": "الاسم",
+  "Al_Saif_form_name_placeholder": "أدخل اسمك",
+  "Al_Saif_form_name_required_error_message": "الاسم مطلوب",
+
+  "Al_Saif_form_company_name": "اسم الشركة",
+  "Al_Saif_form_company_name_placeholder": "أدخل اسم شركتك",
+  "Al_Saif_form_company_name_required_error_message": "اسم الشركة مطلوب",
+
+  "Al_Saif_form_email": "البريد الإلكتروني",
+  "Al_Saif_form_email_placeholder": "أدخل بريدك الإلكتروني",
+  "Al_Saif_form_email_required_error_message": "البريد الإلكتروني مطلوب",
+  "Al_Saif_form_email_valid_email_error_message": "عنوان البريد الإلكتروني غير صالح",
+
+  "Al_Saif_form_phone": "رقم الهاتف",
+  "Al_Saif_form_phone_placeholder": "+966596003333",
+  "Al_Saif_form_phone_required_error_message": "رقم الهاتف مطلوب",
+  "Al_Saif_form_phone_length_error_message": "رقم الهاتف يجب أن يكون 10 أرقام",
+
+  "Al_Saif_form_project_details": "تفاصيل المشروع",
+  "Al_Saif_form_project_details_placeholder": "أخبرنا المزيد عن مشروعك...",
+  "Al_Saif_form_project_details_required_error_message": "تفاصيل المشروع مطلوبة",
+
+   "Al_Saif_form_message": "الرسالة",
+  "Al_Saif_form_message_placeholder": "أدخل رسالتك",
+  "Al_Saif_form_message_required_error_message": "الرسالة مطلوبة",
+
+  "Al_Saif_form_captcha": "كلمة التحقق",
+  "Al_Saif_form_captcha_required_error_message": "كلمة التحقق مطلوبة",
+  "Al_Saif_form_captcha_expired_error_message": "انتهت صلاحية كلمة التحقق، يرجى المحاولة مرة أخرى",
+
+  "Al_Saif_form_submit_button": "يُقدِّم",
+
+  "Al_Saif_form_response_time": "* الحقول المطلوبة. سوف نقوم بالرد خلال 15 دقيقة",
+  
+  "Al_Saif_contact_us_title": "اتصل بنا",
+  "Al_Saif_contact_us_description": "نحن منفتحون على أي اقتراح أو لمجرد الدردشة.",
+  "Al_Saif_contact_us_address_text": "عنوان",
+  "Al_Saif_contact_us_address": "الدمام، المملكة العربية السعودية: الخالدية الشمالية",
+  "Al_Saif_contact_us_email_text": "البريد الإلكتروني",
+  "Al_Saif_contact_us_email": "social.media@alsaifexpress.com",
+
+
   "faq_title": "الأسئلة الشائعة",
   "faq_description": "احصل على إجابات للأسئلة الشائعة حول خدمات النقل لدينا.",
   "faq_question_1_title": "ما هي أنواع الشاحنات التي تقدمونها للإيجار؟",
@@ -117,5 +134,9 @@
   "quick_links": "روابط سريعة",
   "contact_info": "معلومات الاتصال",
   "saudi_arabia": "المملكة العربية السعودية",
-  "support": "24/7 الدعم"
+  "support": "24/7 الدعم",
+
+  
+  "thank_you_message": "شكرًا لك! لقد تم إرسال رسالتك.",
+  "thank_you_contact_message":"سوف نتصل بك في أقرب وقت ممكن"
 }

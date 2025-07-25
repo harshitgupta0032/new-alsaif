@@ -62,7 +62,7 @@ const Hero = () => {
           <div>
             <h1 className="text-white font-extrabold text-[22px] sm:text-2xl  md:text-[36px] lg:text-[47px] leading-14 2xl:text-[58px] mb-7 -tracking-tight">
               <span className="text-blue-400 ">{t('company_name')}</span> {t('for')} <br className="hidden md:block" />
-              <span>{t('goal')}</span> with <br className="hidden md:block" />
+              <span>{t('goal')}</span> <br className="hidden md:block" />
               <span className="text-blue-400">{t('trust')}</span>
             </h1>
             <p className="px-6 text-gray-200 text-[10px] md:text-[15px] lg:text-[20px] 2xl:text-[20px] max-w-2xl mx-auto mb-8 font-medium drop-shadow -tracking-tighter">
@@ -72,7 +72,7 @@ const Hero = () => {
           <div className="flex flex-wrap flex-row gap-4 w-full sm:w-auto justify-center items-center mb-8">
             <Button
               className="flex items-center justify-center -tracking-tighter border-2 border-[#006fba] hover:border-white hover:bg-white hover:text-[#006fba] text-sm  gap-2 md:px-2 2xl:px-6 md:py-2 2xl:py-3 rounded-full md:text-[14px] 2xl:text-[17px] shadow-lg transition"
-              onClick={() => setIsModalOpen(true)}
+              onClick={() => ScrollNavigation({ name: 'Get Quotes', href: '#quotes' })}
             >
               <CiCalculator1 className="hover:bg-[#006fba] text-2xl" />
               {t('instant_quote_button')}

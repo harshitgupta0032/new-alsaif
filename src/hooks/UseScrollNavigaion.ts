@@ -12,22 +12,23 @@ export const useScrollNavigation = (
       fleet: -60,
       about: -100,
       contact: -80,
-      'get-quotes': -68,
+      quotes: -68,
     };
-    const yOffset = yOffsetMap[id] ?? -80;
+
+    const yOffset = yOffsetMap[id] ?? 0;
     const element = document.getElementById(id);
+
     if (element) {
       const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
       window.scrollTo({ top: y, behavior: 'smooth' });
-      history.replaceState(null, '', id === 'home' ? '/' : `/${id}`);
+
+      // ✅ Optional: clean up hash after scroll
+      window.history.replaceState(null, '', `/`);
     }
-    // Close menu if setMenuOpen is provided
-    if (setMenuOpen) {
-      setMenuOpen(false);
-    }
-    if (setActiveSection) {
-      setActiveSection(id);
-    }
+
+    if (setMenuOpen) setMenuOpen(false);
+    if (setActiveSection) setActiveSection(id);
   };
+
   return handleScrollNavigation;
 };

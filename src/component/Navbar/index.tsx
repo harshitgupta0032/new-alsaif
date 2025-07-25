@@ -74,14 +74,15 @@ const Navbar = () => {
 
   return (
     <nav className="bg-[#006fba] shadow-md  top-0 left-0 ">
-      <div className="mx-auto flex flex-wrap w-11/12 md:w-5/6 items-center justify-between h-[80px]">
+      <div className="mx-auto flex flex-wrap w-11/12 md:w-5/6 items-center justify-between h-[80px] 4k:h-[170px]">
         {/* Logo and Brand */}
         <button
           onClick={() => ScrollNavigation({ name: 'Home', href: '#home' })}
-          className='h-[42px] cursor-pointer'
+          className='h-[42px] 4k:h-[80px] cursor-pointer'
         >
           <img src="./companylogo.webp" alt="Alsaif Transport Logo" className='h-full object-contain' />
         </button>
+        
 
         {/* Hamburger Icon for Mobile */}
         <button
@@ -122,7 +123,7 @@ const Navbar = () => {
           </button>
 
 
-          <ul className="flex flex-col md:flex-row items-start md:items-center gap-3 lg:gap-[27px] pt-10 ps-2 md:pt-0 md:ps-0">
+          <ul className="flex flex-col md:flex-row items-start md:items-center gap-3 lg:gap-[27px] pt-10 ps-2 md:pt-0 md:ps-0 ">
             {navLinks.map((link) => (
               <li key={link.name}
                 className="">
@@ -131,7 +132,7 @@ const Navbar = () => {
                   className={`block font-semibold cursor-pointer text-sm sm:text-base md:text-[14px] lg:text-base rounded transition-colors
                     ${activeSection === link.href.replace('#', '') ? 'text-blue-300' : ' hover:text-blue-200'}`}
                   onClick={() => {
-                    if (link.name === 'Contact') {
+                    if (link.name === t('navbar_contact')) {
                       setIsModalOpen(true);
                     } else {
                       ScrollNavigation(link)
@@ -151,8 +152,7 @@ const Navbar = () => {
                 name=""
                 className="rounded-full bg-blue-500 hover:bg-blue-600 text-sm md:text-[10px] lg:text-[14px] mt-4 md:mt-0  md:px-[5px] lg:px-[16px] "
                 onClick={() => {
-                  ScrollNavigation({ name: 'Get Quotes', href: '#get-quotes' });
-                  // setIsModalOpen(true);
+                  ScrollNavigation({ name: 'Get Quotes', href: '#quotes' });
                 }}
               >
                 {t('get_quotes_button')}

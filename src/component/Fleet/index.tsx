@@ -41,13 +41,13 @@ const Fleet = () => {
   return (
     <section
       id="fleet"
-      className="py-13 bg-[#f9fbff] text-center w-11/12 md:w-5/6"
+      className="py-13  bg-[#f9fbff] text-center flex flex-col items-center justify-center"
     >
-
+      <div className="w-11/12  md:w-5/6">
       <h2 className="text-[#006fba] text-2xl  sm:text-3xl md:text-4xl lg:text-[36px] 2xl:text-[40px] font-bold  mb-4">
         {t('our_premium_fleet_title')}
       </h2>
-      <p className="text-gray-400 text-[10px] sm:text-[12px] md:text-[13px] lg:text-[15px] 2xl:text-[18px] pb-8 mb-5">
+      <p className="text-gray-400 text-[14px]  md:text-[18px] lg:text-[20px] 2xl:text-[22px] pb-8 mb-5">
         {t('our_premium_fleet_description')}
       </p>
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
@@ -83,6 +83,7 @@ const Fleet = () => {
             </div>
           </div>
         ))}
+      </div>
       </div>
     </section>
   );

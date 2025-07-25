@@ -2,7 +2,6 @@
 
 import React, { useRef, useState } from 'react';
 import { Formik, Form } from 'formik';
-import { FaPaperPlane } from 'react-icons/fa';
 import Input from '../common/Input';
 import Textarea from '../common/Textarea';
 import Button from '../common/Button';
@@ -13,10 +12,11 @@ import {
 } from '@/component/schema/quotesFormSchema';
 import ReCAPTCHA from 'react-google-recaptcha';
 import { useTranslation } from 'react-i18next';
+import { ClipLoader } from 'react-spinners';
 
 
 
-const QuoteForm = () => {
+const QuoteForm = ({ onSuccess }: { onSuccess: () => void }) => {
 
   const [captchaToken, setCaptchaToken] = useState<string | null>(null);
   const recaptchaRef = useRef<ReCAPTCHA>(null);
@@ -38,12 +38,13 @@ const QuoteForm = () => {
       actions.setSubmitting(false);
       return;
     }
-
-    console.log('Form submitted:', values, 'CAPTCHA token:', captchaToken);
+    await new Promise((res) => setTimeout(res, 4000));
+ 
     actions.setSubmitting(false);
-    actions.resetForm();
+    onSuccess();
     recaptchaRef.current?.reset();
     setCaptchaToken(null);
+    actions.resetForm();
   };
   return (
     <Formik<FormValues>
@@ -52,60 +53,60 @@ const QuoteForm = () => {
       onSubmit={onSubmit}
     >
       {({ isSubmitting, setFieldValue, setFieldError, values, errors, touched }) => (
-        <Form className="bg-inherit grid grid-cols-1 px-3 md:px-6 py-2 gap-x-5 md:grid-cols-2 text-black placeholder:text-black/80 ">
+        <Form className="bg-inherit grid grid-cols-1 md:px-6 py-2 gap-x-5 md:grid-cols-2 text-black placeholder:text-black/80 ">
           <Input
-            label={t('start_your_project_with_Al_Saif_form_name')}
+            label={t('Al_Saif_form_name')}
             id="name"
             type="text"
-            placeholder={t('start_your_project_with_Al_Saif_form_name_placeholder')}
+            placeholder={t('Al_Saif_form_name_placeholder')}
             onChange={(e) => setFieldValue('name', e.target.value)}
             value={values.name}
             error={errors.name}
             touched={touched.name}
             className="w-full text-xs 2xl:text-[17px] py-[6px] 2xl:py-3"
-            />
+          />
           <Input
-            label={t('start_your_project_with_Al_Saif_form_company_name')}
+            label={t('Al_Saif_form_company_name')}
             id="companyName"
             type="text"
-            placeholder={t('start_your_project_with_Al_Saif_form_company_name_placeholder')}
+            placeholder={t('Al_Saif_form_company_name_placeholder')}
             onChange={(e) => setFieldValue('companyName', e.target.value)}
             value={values.companyName}
             error={errors.companyName}
             touched={touched.companyName}
             className="w-full text-xs 2xl:text-[17px] py-[6px] 2xl:py-3"
-            />
+          />
           <Input
-            label={t('start_your_project_with_Al_Saif_form_email')}
+            label={t('Al_Saif_form_email')}
             id="email"
             type="email"
-            placeholder={t('start_your_project_with_Al_Saif_form_email_placeholder')}
+            placeholder={t('Al_Saif_form_email_placeholder')}
             onChange={(e) => setFieldValue('email', e.target.value)}
             value={values.email}
             error={errors.email}
             touched={touched.email}
             className="w-full text-xs 2xl:text-[17px] py-[6px] 2xl:py-3"
-            />
+          />
 
           <Input
-            label={t('start_your_project_with_Al_Saif_form_phone')}
+            label={t('Al_Saif_form_phone')}
             id="phoneNumber"
             type="tel"
-            placeholder={t('start_your_project_with_Al_Saif_form_phone_placeholder')}
+            placeholder={t('Al_Saif_form_phone_placeholder')}
             onChange={(e) => setFieldValue('phoneNumber', e.target.value)}
             value={values.phoneNumber}
             error={errors.phoneNumber}
             touched={touched.phoneNumber}
             className="w-full text-xs 2xl:text-[17px] py-[6px] 2xl:py-3"
-            />
+          />
 
           {/* Project Details */}
           <div className="col-span-1 md:col-span-2">
             <Textarea
-              label={t('start_your_project_with_Al_Saif_form_project_details')}
+              label={t('Al_Saif_form_project_details')}
               id="projectDetails"
               rows={4}
-              placeholder={t('start_your_project_with_Al_Saif_form_project_details_placeholder')}
+              placeholder={t('Al_Saif_form_project_details_placeholder')}
               onChange={(e) => setFieldValue('projectDetails', e.target.value)}
               value={values.projectDetails || ''}
               error={errors.projectDetails}
@@ -114,7 +115,7 @@ const QuoteForm = () => {
             />
           </div>
           <div className="md:col-span-2 h-[107px] mt-2 lg:mt-5 overflow-hidden w-full relative ">
-            <div className={`transform ${isRTL ? 'origin-top-right scale-78 sm:scale-84 lg:scale-116 2xl:scale-132  ': 'origin-top-left scale-78 sm:scale-84 lg:scale-116 2xl:scale-132 ' } w-full`}>
+            <div className={`transform ${isRTL ? 'origin-top-right scale-78 sm:scale-84 lg:scale-116 2xl:scale-132  ' : 'origin-top-left scale-78 sm:scale-84 lg:scale-116 2xl:scale-132 '} w-full`}>
               <ReCAPTCHA
                 ref={recaptchaRef}
                 sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
@@ -126,7 +127,7 @@ const QuoteForm = () => {
                 onExpired={() => {
                   setCaptchaToken(null);
                   setFieldValue('captcha', '');
-                  setFieldError('captcha', t('start_your_project_with_Al_Saif_form_captcha_expired_error_message'));
+                  setFieldError('captcha', t('Al_Saif_form_captcha_expired_error_message'));
                 }}
               />
             </div>
@@ -140,14 +141,15 @@ const QuoteForm = () => {
           <div className="text-center col-span-1 md:col-span-2 lg:mt-5">
             <Button
               type="submit"
-              disabled={isSubmitting || !captchaToken}
-              className="inline-flex items-center cursor-pointer gap-2 text-sm lg:text-lg text-white 2xl:text-xl font-semibold md:px-6 py-2 2xl:py-3 2xl:my-2 rounded-full shadow transition duration-300 ease-in-out disabled:opacity-50"
+              disabled={isSubmitting}
+              className="inline-flex items-center cursor-pointer gap-2 text-sm lg:text-lg text-white 2xl:text-xl font-semibold md:px-6 py-2 2xl:py-3 2xl:my-2 rounded-md shadow transition duration-300 ease-in-out disabled:opacity-50"
             >
-              <FaPaperPlane />
-              {t('start_your_project_with_Al_Saif_form_submit_button')}
+              {isSubmitting ? (
+                (<ClipLoader color="#fff" size={24} />)
+              ) : (
+                t('Al_Saif_form_submit_button')
+              )}
             </Button>
-
-            <p className="mt-3 text-xs 2xl:text-[17px] text-gray-400">{t('start_your_project_with_Al_Saif_form_response_time')}</p>
           </div>
         </Form>
       )}
